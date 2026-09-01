@@ -1,0 +1,214 @@
+[
+  {
+    "post_id": 59,
+    "name": "Footer",
+    "structure": [
+      {
+        "columns": [100],
+        "settings": {"background_color": "#F8FAFC"},
+        "children": [
+          {
+            "type": "container",
+            "columns": [34, 33, 33],
+            "settings": {
+              "content_width": "boxed",
+              "boxed_width": {"unit": "px", "size": 1200, "sizes": []},
+              "flex_wrap": "wrap",
+              "padding": {"unit": "px", "top": "56", "right": "20", "bottom": "48", "left": "20", "isLinked": false}
+            },
+            "column_settings": [
+              {"padding": {"unit": "px", "top": "0", "right": "28", "bottom": "24", "left": "0", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}},
+              {"padding": {"unit": "px", "top": "0", "right": "20", "bottom": "24", "left": "20", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}},
+              {"padding": {"unit": "px", "top": "0", "right": "0", "bottom": "24", "left": "28", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}
+            ],
+            "children": [
+              {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Tổng Lực</h2><p>Giải pháp website và truyền thông dành cho doanh nghiệp tại Quảng Ngãi và trên toàn quốc.</p><p><strong>Công ty TNHH Công Nghệ Truyền Thông Tổng Lực</strong><br>MST/Giấy ĐKKD số: 4300849190</p>"}},
+              {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Khám phá</h2><ul><li><a href=\"/gioi-thieu/\">Giới thiệu Tổng Lực</a></li><li><a href=\"/thiet-ke-website/\">Thiết kế website</a></li><li><a href=\"/dich-vu/\">Dịch vụ</a></li><li><a href=\"/bang-gia/\">Bảng giá</a></li><li><a href=\"/lien-he/\">Liên hệ</a></li></ul>"}},
+              {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Liên hệ</h2><p>4, đường số 7, KDC 577, phường Trương Quang Trọng, Quảng Ngãi</p><p><strong>Tư vấn và báo giá</strong><br><a href=\"tel:0765828282\">0765 82 82 82</a></p><p><strong>Email</strong><br><a href=\"mailto:info@tongluc.com\">info@tongluc.com</a></p>"}}
+            ]
+          }
+        ]
+      },
+      {
+        "columns": [100],
+        "settings": {"background_color": "#FFFFFF"},
+        "children": [
+          {
+            "type": "container",
+            "columns": [100],
+            "settings": {
+              "content_width": "boxed",
+              "boxed_width": {"unit": "px", "size": 1200, "sizes": []},
+              "padding": {"unit": "px", "top": "20", "right": "20", "bottom": "20", "left": "20", "isLinked": false}
+            },
+            "children": [
+              {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<p>© 2026 Tổng Lực. Thông tin liên hệ được công bố theo hồ sơ dự án đã duyệt.</p>"}}
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "post_id": 50,
+    "name": "Trang chủ",
+    "structure": [
+      {
+        "columns": [100],
+        "settings": {"background_color": "#F8FAFC"},
+        "children": [
+          {
+            "type": "container",
+            "columns": [100],
+            "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "padding": {"unit": "px", "top": "96", "right": "20", "bottom": "88", "left": "20", "isLinked": false}},
+            "children": [
+              {"type": "widget", "widget_type": "heading", "settings": {"title": "Tổng Lực — giải pháp website và truyền thông cho doanh nghiệp", "header_size": "h1"}},
+              {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<p>Thiết kế website là dịch vụ trọng tâm của Tổng Lực, kết hợp các giải pháp truyền thông hỗ trợ để doanh nghiệp xây dựng hiện diện số bài bản. Chúng tôi đặt trọng tâm tại Quảng Ngãi và tiếp nhận nhu cầu trên toàn quốc.</p>"}},
+              {"type": "container", "columns": [50, 50], "settings": {"content_width": "full", "flex_wrap": "wrap"}, "column_settings": [{"padding": {"unit": "px", "top": "8", "right": "8", "bottom": "8", "left": "0", "isLinked": false}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "8", "right": "0", "bottom": "8", "left": "8", "isLinked": false}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [{"type": "widget", "widget_type": "button", "settings": {"text": "Gọi 0765 82 82 82", "link": {"url": "tel:0765828282"}, "size": "md"}}, {"type": "widget", "widget_type": "button", "settings": {"text": "Xem dịch vụ thiết kế website", "link": {"url": "/thiet-ke-website/"}, "size": "md"}}]}
+            ]
+          }
+        ]
+      },
+      {
+        "columns": [100],
+        "settings": {"background_color": "#FFFFFF"},
+        "children": [
+          {"type": "container", "columns": [100], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "children": [
+            {"type": "widget", "widget_type": "heading", "settings": {"title": "Tổng Lực đồng hành cùng nhu cầu xây dựng hiện diện số", "header_size": "h2"}},
+            {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<p>Website giúp doanh nghiệp giới thiệu năng lực, trình bày sản phẩm hoặc dịch vụ và tạo một điểm tiếp nhận nhu cầu rõ ràng. Tổng Lực đồng hành từ định hướng, thiết kế và hoàn thiện đến bàn giao, hướng dẫn sử dụng.</p><p>Mỗi giải pháp được xây dựng để hiển thị tốt trên điện thoại, máy tính và tablet, đồng thời tạo nền tảng kỹ thuật và cấu trúc thuận lợi cho hoạt động SEO và quảng cáo.</p>"}}
+          ]}
+        ]
+      },
+      {
+        "columns": [100],
+        "settings": {"background_color": "#F8FAFC"},
+        "children": [
+          {"type": "container", "columns": [100], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "children": [
+            {"type": "widget", "widget_type": "heading", "settings": {"title": "Thiết kế website là dịch vụ trọng tâm", "header_size": "h2"}},
+            {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<p>Từ website giới thiệu đến bán hàng và landing page, Tổng Lực giúp doanh nghiệp lựa chọn cấu trúc phù hợp với mục tiêu sử dụng và nội dung thực tế.</p>"}},
+            {"type": "container", "columns": [33, 34, 33], "settings": {"content_width": "full", "flex_wrap": "wrap"}, "column_settings": [{"padding": {"unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "0", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "24", "right": "12", "bottom": "24", "left": "12", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "24", "right": "0", "bottom": "24", "left": "24", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [
+              {"type": "widget", "widget_type": "uael-infobox", "settings": {"infobox_title": "Website giới thiệu doanh nghiệp", "infobox_description": "Trình bày thương hiệu, năng lực, sản phẩm và các đầu mối liên hệ theo cấu trúc rõ ràng.", "uael_infobox_image_type": "icon", "new_infobox_select_icon": {"value": "fas fa-building", "library": "fa-solid"}, "infobox_icon_color": "#DB4437", "infobox_align": "left"}},
+              {"type": "widget", "widget_type": "uael-infobox", "settings": {"infobox_title": "Website bán hàng", "infobox_description": "Tổ chức danh mục, thông tin sản phẩm và hành trình mua phù hợp với mô hình kinh doanh.", "uael_infobox_image_type": "icon", "new_infobox_select_icon": {"value": "fas fa-shopping-cart", "library": "fa-solid"}, "infobox_icon_color": "#DB4437", "infobox_align": "left"}},
+              {"type": "widget", "widget_type": "uael-infobox", "settings": {"infobox_title": "Landing page hoặc website theo yêu cầu", "infobox_description": "Tập trung vào một mục tiêu truyền thông hoặc nhu cầu vận hành cụ thể đã được làm rõ.", "uael_infobox_image_type": "icon", "new_infobox_select_icon": {"value": "fas fa-bullseye", "library": "fa-solid"}, "infobox_icon_color": "#DB4437", "infobox_align": "left"}}
+            ]},
+            {"type": "widget", "widget_type": "button", "settings": {"text": "Tìm hiểu dịch vụ thiết kế website", "link": {"url": "/thiet-ke-website/"}, "size": "md"}}
+          ]}
+        ]
+      },
+      {
+        "columns": [100],
+        "settings": {"background_color": "#FFFFFF"},
+        "children": [
+          {"type": "container", "columns": [100], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "children": [
+            {"type": "widget", "widget_type": "heading", "settings": {"title": "Các dịch vụ hỗ trợ", "header_size": "h2"}},
+            {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<p>Bên cạnh thiết kế website, Tổng Lực cung cấp các nhóm dịch vụ hỗ trợ để doanh nghiệp triển khai hoạt động truyền thông số theo nhu cầu.</p>"}},
+            {"type": "container", "columns": [25, 25, 25, 25], "settings": {"content_width": "full", "flex_wrap": "wrap"}, "column_settings": [{"padding": {"unit": "px", "top": "20", "right": "16", "bottom": "20", "left": "0", "isLinked": false}, "width_tablet": {"unit": "%", "size": 50, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "20", "right": "8", "bottom": "20", "left": "8", "isLinked": false}, "width_tablet": {"unit": "%", "size": 50, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "20", "right": "8", "bottom": "20", "left": "8", "isLinked": false}, "width_tablet": {"unit": "%", "size": 50, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "20", "right": "0", "bottom": "20", "left": "16", "isLinked": false}, "width_tablet": {"unit": "%", "size": 50, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [
+              {"type": "widget", "widget_type": "uael-infobox", "settings": {"infobox_title": "Chạy quảng cáo", "infobox_description": "Hỗ trợ đưa thông điệp đến đúng nhóm khách hàng theo mục tiêu chiến dịch.", "uael_infobox_image_type": "icon", "new_infobox_select_icon": {"value": "fas fa-bullhorn", "library": "fa-solid"}, "infobox_icon_color": "#DB4437", "infobox_align": "left"}},
+              {"type": "widget", "widget_type": "uael-infobox", "settings": {"infobox_title": "Đào tạo AI", "infobox_description": "Hỗ trợ tiếp cận và ứng dụng công cụ AI phù hợp với công việc thực tế.", "uael_infobox_image_type": "icon", "new_infobox_select_icon": {"value": "fas fa-brain", "library": "fa-solid"}, "infobox_icon_color": "#DB4437", "infobox_align": "left"}},
+              {"type": "widget", "widget_type": "uael-infobox", "settings": {"infobox_title": "Thiết kế hồ sơ năng lực", "infobox_description": "Trình bày thông tin doanh nghiệp và năng lực bằng một tài liệu có cấu trúc.", "uael_infobox_image_type": "icon", "new_infobox_select_icon": {"value": "fas fa-file-alt", "library": "fa-solid"}, "infobox_icon_color": "#DB4437", "infobox_align": "left"}},
+              {"type": "widget", "widget_type": "uael-infobox", "settings": {"infobox_title": "Digital Marketing", "infobox_description": "Kết nối các kênh số thành định hướng truyền thông phù hợp với từng doanh nghiệp.", "uael_infobox_image_type": "icon", "new_infobox_select_icon": {"value": "fas fa-chart-line", "library": "fa-solid"}, "infobox_icon_color": "#DB4437", "infobox_align": "left"}}
+            ]}
+          ]}
+        ]
+      },
+      {
+        "columns": [100],
+        "settings": {"background_color": "#F8FAFC"},
+        "children": [
+          {"type": "container", "columns": [100], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "children": [
+            {"type": "widget", "widget_type": "heading", "settings": {"title": "Giải pháp phù hợp với ai?", "header_size": "h2"}},
+            {"type": "container", "columns": [33, 34, 33], "settings": {"content_width": "full", "flex_wrap": "wrap"}, "column_settings": [{"padding": {"unit": "px", "top": "20", "right": "20", "bottom": "20", "left": "0", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "20", "right": "10", "bottom": "20", "left": "10", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "20", "right": "0", "bottom": "20", "left": "20", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [
+              {"type": "widget", "widget_type": "uael-infobox", "settings": {"infobox_title": "Doanh nghiệp nhỏ và vừa", "infobox_description": "Cần một nền tảng giới thiệu năng lực, dịch vụ và tiếp nhận nhu cầu rõ ràng.", "uael_infobox_image_type": "icon", "new_infobox_select_icon": {"value": "fas fa-briefcase", "library": "fa-solid"}, "infobox_icon_color": "#DB4437", "infobox_align": "left"}},
+              {"type": "widget", "widget_type": "uael-infobox", "settings": {"infobox_title": "Cửa hàng và hộ kinh doanh", "infobox_description": "Cần giới thiệu sản phẩm, bán hàng hoặc tạo một điểm hiện diện chuyên nghiệp trên môi trường số.", "uael_infobox_image_type": "icon", "new_infobox_select_icon": {"value": "fas fa-store", "library": "fa-solid"}, "infobox_icon_color": "#DB4437", "infobox_align": "left"}},
+              {"type": "widget", "widget_type": "uael-infobox", "settings": {"infobox_title": "Đơn vị dịch vụ", "infobox_description": "Cần trình bày phạm vi phục vụ, thế mạnh và kênh liên hệ theo hành trình dễ hiểu.", "uael_infobox_image_type": "icon", "new_infobox_select_icon": {"value": "fas fa-handshake", "library": "fa-solid"}, "infobox_icon_color": "#DB4437", "infobox_align": "left"}}
+            ]}
+          ]}
+        ]
+      },
+      {
+        "columns": [100],
+        "settings": {"background_color": "#FFFFFF"},
+        "children": [
+          {"type": "container", "columns": [50, 50], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "flex_wrap": "wrap", "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "column_settings": [{"padding": {"unit": "px", "top": "0", "right": "28", "bottom": "24", "left": "0", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "0", "right": "0", "bottom": "24", "left": "28", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [
+            {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Tổng Lực phục vụ ở đâu?</h2><p>Quảng Ngãi là trọng tâm SEO và hiện diện địa phương của Tổng Lực. Phạm vi tiếp nhận dự án là trên toàn quốc.</p>"}},
+            {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Bước tiếp theo</h2><p>Hãy xem dịch vụ thiết kế website, gọi trực tiếp để trao đổi hoặc gửi nhu cầu qua trang Liên hệ.</p><p><a href=\"/lien-he/\">Yêu cầu tư vấn/báo giá</a></p>"}}
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    "post_id": 57,
+    "name": "Giới thiệu",
+    "structure": [
+      {"columns": [100], "settings": {"background_color": "#F8FAFC"}, "children": [
+        {"type": "container", "columns": [100], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "padding": {"unit": "px", "top": "88", "right": "20", "bottom": "80", "left": "20", "isLinked": false}}, "children": [
+          {"type": "widget", "widget_type": "heading", "settings": {"title": "Giới thiệu Tổng Lực", "header_size": "h1"}},
+          {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<p>Tổng Lực là thương hiệu của Công ty TNHH Công Nghệ Truyền Thông Tổng Lực tại Quảng Ngãi, cung cấp thiết kế website là dịch vụ chính cùng các dịch vụ truyền thông hỗ trợ và nhận nhu cầu trên toàn quốc.</p>"}},
+          {"type": "container", "columns": [50, 50], "settings": {"content_width": "full", "flex_wrap": "wrap"}, "column_settings": [{"padding": {"unit": "px", "top": "8", "right": "8", "bottom": "8", "left": "0", "isLinked": false}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "8", "right": "0", "bottom": "8", "left": "8", "isLinked": false}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [{"type": "widget", "widget_type": "button", "settings": {"text": "Xem dịch vụ thiết kế website", "link": {"url": "/thiet-ke-website/"}, "size": "md"}}, {"type": "widget", "widget_type": "button", "settings": {"text": "Gọi 0765 82 82 82", "link": {"url": "tel:0765828282"}, "size": "md"}}]}
+        ]}
+      ]},
+      {"columns": [100], "settings": {"background_color": "#FFFFFF"}, "children": [
+        {"type": "container", "columns": [50, 50], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "flex_wrap": "wrap", "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "column_settings": [{"padding": {"unit": "px", "top": "0", "right": "28", "bottom": "24", "left": "0", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "0", "right": "0", "bottom": "24", "left": "28", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [
+          {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Tổng Lực là ai?</h2><p><strong>Công ty TNHH Công Nghệ Truyền Thông Tổng Lực</strong><br>Thương hiệu: Tổng Lực<br>MST/Giấy ĐKKD số: 4300849190</p><p>Địa chỉ: 4, đường số 7, KDC 577, phường Trương Quang Trọng, Quảng Ngãi.</p>"}},
+          {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Tổng Lực cung cấp dịch vụ gì?</h2><p>Thiết kế website là dịch vụ chính, gồm website giới thiệu doanh nghiệp, website bán hàng, landing page hoặc website theo yêu cầu khi phù hợp.</p><p>Các dịch vụ hỗ trợ gồm chạy quảng cáo, đào tạo AI, thiết kế hồ sơ năng lực và Digital Marketing.</p>"}}
+        ]}
+      ]},
+      {"columns": [100], "settings": {"background_color": "#F8FAFC"}, "children": [
+        {"type": "container", "columns": [50, 50], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "flex_wrap": "wrap", "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "column_settings": [{"padding": {"unit": "px", "top": "0", "right": "28", "bottom": "24", "left": "0", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "0", "right": "0", "bottom": "24", "left": "28", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [
+          {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Phục vụ tại Quảng Ngãi và trên toàn quốc</h2><p>Quảng Ngãi là trọng tâm hiện diện địa phương của Tổng Lực. Đồng thời, doanh nghiệp tiếp nhận nhu cầu thiết kế website và các dịch vụ phù hợp từ khách hàng trên toàn quốc.</p>"}},
+          {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Cách Tổng Lực đồng hành</h2><p>Tổng Lực đồng hành từ định hướng, thiết kế và hoàn thiện đến bàn giao, hướng dẫn sử dụng. Phạm vi cụ thể của từng dự án được làm rõ theo nhu cầu và báo giá tương ứng.</p>"}}
+        ]}
+      ]},
+      {"columns": [100], "settings": {"background_color": "#FFFFFF"}, "children": [
+        {"type": "container", "columns": [100], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "children": [
+          {"type": "widget", "widget_type": "heading", "settings": {"title": "Thông tin doanh nghiệp và liên hệ", "header_size": "h2"}},
+          {"type": "container", "columns": [50, 50], "settings": {"content_width": "full", "flex_wrap": "wrap"}, "column_settings": [{"padding": {"unit": "px", "top": "20", "right": "24", "bottom": "20", "left": "0", "isLinked": false}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "20", "right": "0", "bottom": "20", "left": "24", "isLinked": false}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [
+            {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h3>Tư vấn và báo giá</h3><p><a href=\"tel:0765828282\">0765 82 82 82</a><br><a href=\"mailto:info@tongluc.com\">info@tongluc.com</a></p><h3>Kế toán</h3><p><a href=\"tel:0705808080\">0705 80 80 80</a></p>"}},
+            {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h3>Góp ý và kiến nghị</h3><p><a href=\"mailto:ceo@tongluc.com\">ceo@tongluc.com</a></p><h3>Tìm hiểu thêm</h3><p><a href=\"/thiet-ke-website/\">Dịch vụ thiết kế website</a><br><a href=\"/lien-he/\">Liên hệ Tổng Lực</a></p>"}}
+          ]}
+        ]}
+      ]}
+    ]
+  },
+  {
+    "post_id": 55,
+    "name": "Liên hệ",
+    "structure": [
+      {"columns": [100], "settings": {"background_color": "#F8FAFC"}, "children": [
+        {"type": "container", "columns": [100], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "padding": {"unit": "px", "top": "88", "right": "20", "bottom": "80", "left": "20", "isLinked": false}}, "children": [
+          {"type": "widget", "widget_type": "heading", "settings": {"title": "Liên hệ Tổng Lực", "header_size": "h1"}},
+          {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<p>Gọi số tư vấn và báo giá để trao đổi trực tiếp, hoặc gửi thông tin nhu cầu qua biểu mẫu bên dưới. Tổng Lực đặt trọng tâm tại Quảng Ngãi và tiếp nhận dự án trên toàn quốc.</p>"}},
+          {"type": "widget", "widget_type": "button", "settings": {"text": "Gọi 0765 82 82 82", "link": {"url": "tel:0765828282"}, "size": "md"}}
+        ]}
+      ]},
+      {"columns": [100], "settings": {"background_color": "#FFFFFF"}, "children": [
+        {"type": "container", "columns": [50, 50], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "flex_wrap": "wrap", "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "column_settings": [{"padding": {"unit": "px", "top": "0", "right": "28", "bottom": "24", "left": "0", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "0", "right": "0", "bottom": "24", "left": "28", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [
+          {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Liên hệ tư vấn và báo giá</h2><p><strong><a href=\"tel:0765828282\">0765 82 82 82</a></strong></p><p>Đây là đầu mối ưu tiên cho nhu cầu tư vấn và báo giá.</p>"}},
+          {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Thông tin Công ty TNHH Công Nghệ Truyền Thông Tổng Lực</h2><p>Thương hiệu: Tổng Lực<br>MST/Giấy ĐKKD số: 4300849190<br>Địa chỉ: 4, đường số 7, KDC 577, phường Trương Quang Trọng, Quảng Ngãi</p>"}}
+        ]}
+      ]},
+      {"columns": [100], "settings": {"background_color": "#F8FAFC"}, "children": [
+        {"type": "container", "columns": [100], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "children": [
+          {"type": "widget", "widget_type": "heading", "settings": {"title": "Chọn đúng đầu mối liên hệ", "header_size": "h2"}},
+          {"type": "container", "columns": [50, 50], "settings": {"content_width": "full", "flex_wrap": "wrap"}, "column_settings": [{"padding": {"unit": "px", "top": "20", "right": "24", "bottom": "20", "left": "0", "isLinked": false}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "20", "right": "0", "bottom": "20", "left": "24", "isLinked": false}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [
+            {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h3>Tư vấn và báo giá</h3><p><a href=\"tel:0765828282\">0765 82 82 82</a></p><h3>Kế toán</h3><p><a href=\"tel:0705808080\">0705 80 80 80</a></p>"}},
+            {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h3>Email chung</h3><p><a href=\"mailto:info@tongluc.com\">info@tongluc.com</a></p><h3>Góp ý và kiến nghị</h3><p><a href=\"mailto:ceo@tongluc.com\">ceo@tongluc.com</a></p>"}}
+          ]}
+        ]}
+      ]},
+      {"columns": [100], "settings": {"background_color": "#FFFFFF"}, "children": [
+        {"type": "container", "columns": [50, 50], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "flex_wrap": "wrap", "padding": {"unit": "px", "top": "72", "right": "20", "bottom": "72", "left": "20", "isLinked": false}}, "column_settings": [{"padding": {"unit": "px", "top": "0", "right": "32", "bottom": "24", "left": "0", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}, {"padding": {"unit": "px", "top": "0", "right": "0", "bottom": "24", "left": "32", "isLinked": false}, "width_tablet": {"unit": "%", "size": 100, "sizes": []}, "width_mobile": {"unit": "%", "size": 100, "sizes": []}}], "children": [
+          {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<h2>Gửi yêu cầu tư vấn/báo giá</h2><p>Hãy cung cấp thông tin liên hệ và mô tả ngắn nhu cầu để Tổng Lực tiếp nhận yêu cầu. Không gửi thông tin nhạy cảm hoặc tài liệu chưa cần thiết qua biểu mẫu.</p><p>Nếu cần trao đổi ngay, vui lòng gọi <a href=\"tel:0765828282\">0765 82 82 82</a>.</p>"}},
+          {"type": "widget", "widget_type": "shortcode", "settings": {"shortcode": "[contact-form-7 id=\"843524c\" title=\"Liên hệ\"]"}}
+        ]}
+      ]},
+      {"columns": [100], "settings": {"background_color": "#F8FAFC"}, "children": [
+        {"type": "container", "columns": [100], "settings": {"content_width": "boxed", "boxed_width": {"unit": "px", "size": 1200, "sizes": []}, "padding": {"unit": "px", "top": "64", "right": "20", "bottom": "64", "left": "20", "isLinked": false}}, "children": [
+          {"type": "widget", "widget_type": "heading", "settings": {"title": "Tổng Lực có nhận dự án ngoài Quảng Ngãi không?", "header_size": "h2"}},
+          {"type": "widget", "widget_type": "text-editor", "settings": {"editor": "<p>Có. Quảng Ngãi là trọng tâm hiện diện địa phương; phạm vi cung cấp dịch vụ của Tổng Lực là trên toàn quốc.</p><p><a href=\"/thiet-ke-website/\">Xem dịch vụ thiết kế website</a> hoặc <a href=\"/gioi-thieu/\">tìm hiểu thêm về Tổng Lực</a>.</p>"}}
+        ]}
+      ]}
+    ]
+  }
+]

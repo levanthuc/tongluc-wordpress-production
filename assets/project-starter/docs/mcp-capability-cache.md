@@ -75,7 +75,7 @@ Giữ coverage không liên quan ở `Current`. Trạng thái tổng là `Partia
 ## Kết luận
 
 - Tác vụ có thể tự động hóa an toàn:
-- Tác vụ phải dùng WP-CLI/admin/editor:
+- Tác vụ bị MCP/REST chặn hoặc cần owner phê duyệt fallback development/debug:
 - Tác vụ cần người dùng phê duyệt:
 - Ability/fallback vừa bổ sung vào cache:
 - Rủi ro/bất thường:

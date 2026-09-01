@@ -2,6 +2,8 @@
 
 `STATUS.md` là router. Không đọc toàn bộ thư mục; chỉ đọc file được liệt kê trong `Current inputs`. Khi qua cổng duyệt, cập nhật STATUS và thêm đủ record bắt buộc của phase kế tiếp trước write.
 
+Reference cũng được nạp theo allowlist của phase/Next action; không đọc toàn bộ `references/`. Exact input path bị thiếu thì ghi blocker, không quét thư mục để đoán; chỉ tiếp tục task độc lập đã được STATUS cho phép.
+
 | File/thư mục | Vai trò | Khi đọc |
 |---|---|---|
 | `STATUS.md` | Phase, input hiện tại, next action, policy | Mọi phiên |

@@ -86,7 +86,7 @@ Fingerprint chỉ tổng hợp bằng chứng sẵn có cho task: endpoint, prin
 
 - Xác định read/write, idempotence, permission, target và rollback.
 - Smoke-test đọc trước khi write khi điều đó giảm rủi ro.
-- Có ability: dùng ability. Không có: dùng REST/API/document model/helper đã kiểm thử trong scope. Không có đường an toàn: báo giới hạn.
+- Có ability: dùng ability. Không có thì dùng documented REST API trong scope. Nếu cả hai không đáp ứng, báo giới hạn và dừng affected task; không đọc PHP source, tạo helper, dùng WP-CLI hoặc sửa trực tiếp database trong workflow production thông thường. Chỉ dùng fallback code/CLI khi owner yêu cầu hoặc phê duyệt rõ tác vụ phát triển/debug/compatibility và phạm vi thay đổi.
 - Chuỗi write MCP chuẩn: cache chọn ability → live get-info → resolve/read target → write → read back.
 - Cập nhật cache bằng ability, schema summary, lần kiểm tra và fallback vừa dùng.
 

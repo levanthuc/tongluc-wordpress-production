@@ -32,4 +32,11 @@ Skip audit không đồng nghĩa ghi mù:
 
 - Không chạy audit Markdown/table/link/shell ngoài phạm vi chỉ để “chắc chắn” trong tác vụ website thường lệ; chỉ chạy khi file liên quan vừa sửa, có lỗi hiển thị hoặc QA/package yêu cầu.
 - Không đọc catalog/reference dài khi baseline, blueprint và candidate widget đã chỉ rõ quyết định.
+- Mỗi turn dùng reference allowlist từ Router/Next action; không đọc toàn bộ `references/` hoặc reference của phase khác để lấy thêm bối cảnh.
 - Báo ngắn phần baseline đã tái sử dụng và chỉ mô tả delta/test thực hiện.
+
+## Missing dependency
+
+- Path trong baseline/STATUS là exact input. Nếu không tồn tại, ghi path và affected task; không `find`, `rg --files` hoặc quét thư mục để đoán file thay thế.
+- Có thể tiếp tục một task khác chỉ khi task đó độc lập, đã nằm trong Next action/queue và không vượt gate hiện tại.
+- Nếu không có task độc lập được phép, cập nhật blocker rồi dừng. Owner cung cấp/sửa path hoặc đổi scope mới được tiếp tục affected task.

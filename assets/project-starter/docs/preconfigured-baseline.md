@@ -2,7 +2,7 @@
 
 > Trạng thái: Draft · Revision: YYYY-MM-DD-r1 · Owner xác nhận/ngày: Chưa · Environment/Site URL: Chưa
 
-Chỉ có hiệu lực khi header là `Current` và STATUS trỏ đúng revision. `Keep/Skip` nghĩa là không audit, query để chứng minh, reapply hoặc tạo trùng. Codex chỉ làm `Action required`; trước exact write vẫn resolve target, lấy live ability info và read-back.
+Chỉ có hiệu lực khi header là `Current` và STATUS trỏ đúng revision. `Keep/Skip` nghĩa là không audit, query để chứng minh, reapply hoặc tạo trùng. Codex chỉ làm `Action required`; trước exact write vẫn resolve target, lấy live ability info và read-back. Mọi path là exact input: thiếu file thì hoãn đúng task, không quét thư mục để đoán.
 
 ## Brand assets
 
