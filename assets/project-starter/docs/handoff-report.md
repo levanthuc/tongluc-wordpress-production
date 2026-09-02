@@ -6,11 +6,13 @@
 
 - Môi trường/URL:
 - Project profile:
+- Baseline/version/verification:
+- Execution mode and strategy:
 - Phiên bản bàn giao:
 - Trang/template/layout đã hoàn thành:
 - Tích hợp đã cấu hình:
 - Nội dung/sản phẩm đã nhập:
-- Prototype approval/revision:
+- Approved gates: Page/Direction/Site/Production/Launch:
 - Build manifest status/collisions:
 
 ## Kết quả QA
@@ -27,6 +29,7 @@
 | Security/privacy | | | | |
 | WooCommerce | | | | |
 | Prototype/archetype coverage | | | | |
+| Integrated Design QA | | | | |
 | Cache purge/visual verification | | | | |
 
 ## Thay đổi kỹ thuật
@@ -40,6 +43,7 @@
 - SEO/schema ownership theo project profile:
 - Cache purge policy và thao tác đã thực hiện:
 - Owner-managed systems không thay đổi:
+- Work deferred from Design Mode to Production:
 
 ## Vận hành
 

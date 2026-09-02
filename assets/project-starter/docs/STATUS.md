@@ -1,29 +1,62 @@
-# Project Status
+# Project Status v2
 
-Đọc file này trước; sau đó chỉ đọc hồ sơ dự án trong `Current inputs`. Skill có thể nạp reference đúng phase cho `Next action`; không đọc các hồ sơ dự án khác. Khi qua cổng duyệt, phải thêm mọi record bắt buộc của next action vào `Current inputs` trước write (đặc biệt build manifest ở Prototype/Production/QA và prototype approval ở Production/QA).
+Đọc file này sau owner request. Chỉ nạp `Current inputs` cần cho requested scope. `Next Recommended Action` là khuyến nghị, không thắng explicit owner request.
 
-`Approved outputs` chỉ là tập dependency đã duyệt đang chi phối `Next action`, không phải lịch sử. Mỗi entry dùng `` `path` @ `revision` `` và phải khớp header `Trạng thái: Approved`, đúng `Revision` và `Người duyệt/ngày` trong tài liệu gốc; lệch là routing error/revalidation, chưa được write.
+## Project Profile
 
-- Profile: `greenfield-standard-v1`
-- Profile source: Owner đã khởi tạo starter greenfield Tổng Lực; đổi profile nếu thực tế mâu thuẫn
-- Website type: Chưa xác định
+- Project profile: `corporate-master-v2` / `greenfield-standard-v1` / `commerce` / `existing` / `redesign` / `migration`
+- Website type: Corporate/Service / Commerce / Other
 - Environment: Local / Staging / Production
-- Delivery mode: `guided-wave` / `strict-sequential` / `batch-production`
-- Preconfigured baseline: Not used / Current / Partial / Stale · Evidence: `docs/preconfigured-baseline.md` @ `revision`
-- Phase: Intake
-- Approved outputs — active gate set:
-  - Chưa có
+- Site URL:
+
+## Baseline
+
+- Baseline: `corporate-master` / custom / none
+- Baseline version: `2.0.0` / N/A
+- Baseline verification: Not started / Partial / Verified / Drift / N/A
+- Evidence: `docs/preconfigured-baseline.md` @ revision
+
+## Execution
+
+- Execution mode: `DESIGN` / `PRODUCTION`
+- Execution strategy: `GUIDED_FLOW` / `OWNER_DIRECTED`
+- Current requested scope: SITE / PAGE / SECTION / COMPONENT · target:
+- Current task type: CREATE / REVISE / INTEGRATE / QA / PRODUCE
+- Current revision intent: N/A / POLISH / REDESIGN / REPLACE_DIRECTION / RESPONSIVE_FIX / CONTENT_LAYOUT_FIX / SECTION_REVISION
+- Current phase: Project Context / Foundation / Design Execution / Integrated QA / Design Approval / Production / Launch / Editorial Growth
+
+## Router
+
 - Current inputs:
   - `docs/project-brief.md`
-- Next action: Đọc/cập nhật brief theo snapshot guard; ghi deferred decisions/hard blockers. Nếu không bị chặn, dừng tại cổng duyệt. Nếu đúng revision đã Approved, chuyển Architecture theo operating-model
-- MCP capability cache: Empty · Coverage: none
-- Build manifest: Empty · `docs/build-manifest.md`
-- Prototype approval: Not started · Evidence: `docs/prototype-approval.md`
-- Global Shell approval: Not started · Evidence: `docs/global-shell-approval.md`
-- Active page wave: Not started · Queue: `docs/page-wave-status.md`
-- Continuation mode: `confirm-next-phase`
-- Cache purge policy: `owner`
-- Exceptions from profile: Không có
-- Last updated: YYYY-MM-DD HH:MM TZ
+- Direct dependencies:
+  - Chưa xác định theo requested scope
+- Active unfinished scope: Không có
+- Next Recommended Action: Xác nhận brief/profile/baseline; nếu owner chưa chỉ target, đề xuất scope thiết kế có giá trị cao nhất
 
-Phase hợp lệ: `Intake`, `Architecture`, `Contract JIT`, `Global Foundation`, `Global Shell`, `Home Blueprint`, `Home Prototype`, `Page Waves`, `Core QA/Handoff`, `Website Core Complete`, `Editorial Growth`. Không tự chuyển từ `Website Core Complete` sang `Editorial Growth`.
+## Page/Component States
+
+| Scope/target | State | Dependency flags | Revision/evidence | Next |
+|---|---|---|---|---|
+| Home | Not Started | | | |
+| Header | Not Started | | | |
+| Footer | Not Started | | | |
+
+State: `Not Started`, `Planned`, `Design In Progress`, `Design Complete`, `Page Design Approved`, `Revision Requested`, `QA Pending`, `Integrated QA Passed`, `Production Ready`, `Complete`.
+
+## Approved Gates
+
+- Approved outputs/gates:
+  - Chưa có
+- Gate names: Page Design Approved / Design Direction Approved / Site Design Approved / Production Approved / Launch Approved
+
+Mỗi entry dùng `` `path` @ `revision` `` và phải khớp marker nguồn. Đây là dependency active, không phải lịch sử đầy đủ.
+
+## Deferred Work và policy
+
+- Deferred work: Rank Math detail; performance/cache; production SMTP; analytics/security/indexing — mở ở Production Mode hoặc explicit request
+- MCP capability cache: Empty · `docs/mcp-capability-cache.md`
+- Build manifest: Empty · `docs/build-manifest.md`
+- Cache purge policy: `owner`
+- Exceptions/risks:
+- Last updated: YYYY-MM-DD HH:MM TZ

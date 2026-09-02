@@ -9,7 +9,8 @@
 ## 1. Kiểm soát dự án
 
 - Mã dự án / website-domain dự kiến:
-- Project profile: `greenfield-standard-v1` / Existing / Redesign / Migration
+- Project profile: `corporate-master-v2` / `greenfield-standard-v1` / Commerce / Existing / Redesign / Migration
+- Baseline/version: `corporate-master 2.0.0` / custom / none
 - Loại website: Giới thiệu / Bán hàng / Khác
 - Môi trường: Local
 - Ngôn ngữ / thị trường / khu vực phục vụ:
@@ -32,6 +33,7 @@
 - Nguồn tài sản:
 - Người duyệt cuối:
 - Ngoại lệ so với project profile / ràng buộc đổi scope:
+- Preferred execution: Guided Flow / Owner-Directed theo từng yêu cầu
 
 ## 3. Quyết định đã biết cho phase sau
 
@@ -48,6 +50,7 @@ Chỉ ghi phần đã có; phần thiếu đưa xuống register.
 
 - Cache purge policy: `owner` / `codex-scoped` trên Local-Staging
 - Hành động cần duyệt riêng:
+- Điều kiện mở Production Mode: Site Design Approved / owner chỉ định khác
 - Dữ liệu được phép adopt/xóa/di chuyển (nếu có):
 
 LiteSpeed settings, Analytics/đo lường, security và backup do owner quản lý. Không ghi credential thật; chỉ ghi owner và trạng thái sẵn sàng.

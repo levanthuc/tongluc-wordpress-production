@@ -1,0 +1,8 @@
+node_modules/
+mcp-config.json
+*.local.json
+*.secret.json
+qa-artifacts/
+__MACOSX/
+.DS_Store
+._*

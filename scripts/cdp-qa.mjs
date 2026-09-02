@@ -1,237 +1,202 @@
+#!/usr/bin/env node
 import { spawn } from 'node:child_process';
-import { randomBytes } from 'node:crypto';
-import { mkdtemp, readFile } from 'node:fs/promises';
-import { connect } from 'node:net';
+import { access, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
+import WebSocket from 'ws';
+import { parseArgs, positiveInteger, requireOption } from './lib/cli.mjs';
+import { readJson, writeJson } from './lib/json.mjs';
+import { validateAgainstSchema } from './lib/schema.mjs';
 
-const chrome = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const targets = [
-  { name: 'home', url: 'http://localhost/web-tongluc/' },
-  { name: 'about', url: 'http://localhost/web-tongluc/gioi-thieu/' },
-  { name: 'contact', url: 'http://localhost/web-tongluc/lien-he/' },
-];
-const viewports = [
+const defaultViewports = [
   { name: 'desktop', width: 1440, height: 900 },
   { name: 'tablet', width: 768, height: 1024 },
-  { name: 'mobile', width: 390, height: 844 },
+  { name: 'mobile', width: 390, height: 844 }
 ];
 
-const delay = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+async function firstExisting(paths) {
+  for (const path of paths) {
+    if (!path) continue;
+    try { await access(path); return path; } catch { /* continue */ }
+  }
+  throw new Error('Chrome/Chromium not found. Use --chrome <path> or CHROME_PATH.');
+}
 
-async function waitForFile(path, attempts = 100) {
-  for (let index = 0; index < attempts; index += 1) {
+function validatePlan(plan) {
+  if (plan?.schema_version !== '1.0.0') throw new Error('Unsupported QA plan schema_version.');
+  if (!Array.isArray(plan.pages) || plan.pages.length === 0) throw new Error('QA plan requires pages.');
+  for (const page of plan.pages) {
+    if (!page.name || (!page.url && !page.path)) throw new Error('Each QA page requires name and url/path.');
+    if (page.path && !plan.site_url) throw new Error(`Page ${page.name} uses path but site_url is missing.`);
+  }
+}
+
+const delay = (ms) => new Promise((resolvePromise) => setTimeout(resolvePromise, ms));
+
+async function waitForDebugPort(profilePath, timeoutMs) {
+  const activePort = join(profilePath, 'DevToolsActivePort');
+  const started = Date.now();
+  while (Date.now() - started < timeoutMs) {
     try {
-      return await readFile(path, 'utf8');
-    } catch {
-      await delay(100);
-    }
+      const [port] = (await readFile(activePort, 'utf8')).trim().split(/\r?\n/);
+      if (Number(port) > 0) return Number(port);
+    } catch { /* not ready */ }
+    await delay(50);
   }
-  throw new Error(`Timed out waiting for ${path}`);
+  throw new Error('Chrome DevTools port did not become ready.');
 }
 
-async function evaluate(socketUrl, expression, viewport) {
-  const parsed = new URL(socketUrl);
-  const socket = connect({ host: parsed.hostname, port: Number(parsed.port) });
-  const key = randomBytes(16).toString('base64');
-  const request = [
-    `GET ${parsed.pathname}${parsed.search} HTTP/1.1`,
-    `Host: ${parsed.host}`,
-    'Upgrade: websocket',
-    'Connection: Upgrade',
-    `Sec-WebSocket-Key: ${key}`,
-    'Sec-WebSocket-Version: 13',
-    '',
-    '',
-  ].join('\r\n');
-
-  let buffer = Buffer.alloc(0);
-  let upgraded = false;
-  const metricsId = 1;
-  const evaluateId = 2;
-  const result = await new Promise((resolve, reject) => {
-    const send = (payload) => {
-      const body = Buffer.from(payload);
-      const mask = randomBytes(4);
-      let header;
-      if (body.length < 126) {
-        header = Buffer.from([0x81, 0x80 | body.length]);
-      } else if (body.length < 65536) {
-        header = Buffer.alloc(4);
-        header[0] = 0x81;
-        header[1] = 0x80 | 126;
-        header.writeUInt16BE(body.length, 2);
-      } else {
-        header = Buffer.alloc(10);
-        header[0] = 0x81;
-        header[1] = 0x80 | 127;
-        header.writeBigUInt64BE(BigInt(body.length), 2);
+class CdpClient {
+  constructor(url) {
+    this.nextId = 1;
+    this.pending = new Map();
+    this.listeners = new Map();
+    this.socket = new WebSocket(url);
+    this.socket.on('message', (raw) => {
+      const message = JSON.parse(String(raw));
+      if (message.id) {
+        const pending = this.pending.get(message.id);
+        if (!pending) return;
+        this.pending.delete(message.id);
+        if (message.error) pending.reject(new Error(message.error.message));
+        else pending.resolve(message.result || {});
+      } else if (message.method) {
+        for (const listener of this.listeners.get(message.method) || []) listener(message.params || {});
       }
-      const masked = Buffer.alloc(body.length);
-      for (let index = 0; index < body.length; index += 1) masked[index] = body[index] ^ mask[index % 4];
-      socket.write(Buffer.concat([header, mask, masked]));
-    };
-
-    const parseFrames = () => {
-      while (buffer.length >= 2) {
-        const second = buffer[1];
-        let length = second & 0x7f;
-        let offset = 2;
-        if (length === 126) {
-          if (buffer.length < 4) return;
-          length = buffer.readUInt16BE(2);
-          offset = 4;
-        } else if (length === 127) {
-          if (buffer.length < 10) return;
-          length = Number(buffer.readBigUInt64BE(2));
-          offset = 10;
-        }
-        if (buffer.length < offset + length) return;
-        const opcode = buffer[0] & 0x0f;
-        const payload = buffer.subarray(offset, offset + length);
-        buffer = buffer.subarray(offset + length);
-        if (opcode === 0x1) {
-          const message = JSON.parse(payload.toString('utf8'));
-          if (message.id === metricsId) {
-            send(JSON.stringify({
-              id: evaluateId,
-              method: 'Runtime.evaluate',
-              params: { expression, returnByValue: true, awaitPromise: true },
-            }));
-          } else if (message.id === evaluateId) {
-            resolve(message);
-          }
-        }
-      }
-    };
-
-    socket.once('connect', () => socket.write(request));
-    socket.on('error', reject);
-    socket.on('data', (chunk) => {
-      buffer = Buffer.concat([buffer, chunk]);
-      if (!upgraded) {
-        const boundary = buffer.indexOf('\r\n\r\n');
-        if (boundary === -1) return;
-        const headers = buffer.subarray(0, boundary).toString('utf8');
-        if (!headers.startsWith('HTTP/1.1 101')) {
-          reject(new Error(`WebSocket upgrade failed: ${headers.split('\r\n')[0]}`));
-          return;
-        }
-        upgraded = true;
-        buffer = buffer.subarray(boundary + 4);
-        send(JSON.stringify({
-          id: metricsId,
-          method: 'Emulation.setDeviceMetricsOverride',
-          params: {
-            width: viewport.width,
-            height: viewport.height,
-            deviceScaleFactor: 1,
-            mobile: false,
-          },
-        }));
-      }
-      parseFrames();
     });
-  });
-  socket.end();
-  if (result.result?.exceptionDetails) {
-    return { cdpException: result.result.exceptionDetails.text };
   }
-  return result.result?.result?.value || { cdpError: 'Runtime.evaluate returned no value.' };
-}
 
-const expression = `(async () => {
-  for (let index = 0; index < 100 && (!document.body || document.readyState !== 'complete'); index += 1) {
-    await new Promise((resolve) => setTimeout(resolve, 100));
+  async open() {
+    if (this.socket.readyState === WebSocket.OPEN) return;
+    await new Promise((resolvePromise, reject) => {
+      this.socket.once('open', resolvePromise);
+      this.socket.once('error', reject);
+    });
   }
-  if (!document.body) throw new Error('Document body is unavailable.');
-  const overflows = [...document.querySelectorAll('body *')]
-    .map((node) => ({ node, rect: node.getBoundingClientRect() }))
-    .filter(({ rect }) => rect.right > innerWidth + 1 || rect.left < -1)
-    .slice(0, 12)
-    .map(({ node, rect }) => ({
-      tag: node.tagName,
-      id: node.id,
-      className: String(node.className || '').slice(0, 140),
-      left: Math.round(rect.left),
-      right: Math.round(rect.right),
-      width: Math.round(rect.width),
-    }));
-  const h1s = [...document.querySelectorAll('h1')].filter((node) => {
-    const css = getComputedStyle(node);
-    return css.display !== 'none' && css.visibility !== 'hidden';
-  });
-  const headerNodes = [...document.querySelectorAll('#masthead, header, .ast-primary-header-bar, .ast-builder-grid-row-container, .site-header-primary-section-left')];
-  const headerBackgrounds = headerNodes.map((node) => ({
-    tag: node.tagName,
-    className: String(node.className || '').slice(0, 120),
-    backgroundColor: getComputedStyle(node).backgroundColor,
-  }));
-  const customFooter = document.querySelector('[data-elementor-id="59"]');
-  const footerText = (customFooter?.innerText || '').replace(/\\s+/g, ' ').trim();
-  return {
-    url: location.href,
-    title: document.title,
-    viewport: { width: innerWidth, height: innerHeight },
-    document: {
-      clientWidth: document.documentElement.clientWidth,
-      scrollWidth: document.documentElement.scrollWidth,
-      bodyScrollWidth: document.body.scrollWidth,
-      horizontalOverflow: document.documentElement.scrollWidth > innerWidth + 1,
-    },
-    h1Count: h1s.length,
-    h1Text: h1s.map((node) => (node.innerText || '').replace(/\\s+/g, ' ').trim()),
-    elementorRootCount: document.querySelectorAll('.elementor').length,
-    footer: {
-      found: Boolean(customFooter) && footerText.includes('Tổng Lực'),
-      copyrightFound: footerText.includes('2026') && footerText.includes('Tổng Lực'),
-      textSample: footerText.slice(0, 300),
-    },
-    contactFormCount: document.querySelectorAll('form.wpcf7-form').length,
-    shortcodeLeak: document.body.innerText.includes('[contact-form-7'),
-    headerBackgrounds,
-    overflows,
-  };
-})()`;
 
-const output = [];
-for (const target of targets) for (const viewport of viewports) {
-  const profile = await mkdtemp(join(tmpdir(), `tongluc-cdp-${viewport.name}-`));
-  const child = spawn(chrome, [
-    '--headless=new',
-    '--disable-gpu',
-    '--no-first-run',
-    '--no-default-browser-check',
-    '--remote-debugging-port=0',
-    `--user-data-dir=${profile}`,
-    `--window-size=${viewport.width},${viewport.height}`,
-    target.url,
-  ], { stdio: 'ignore' });
+  send(method, params = {}) {
+    const id = this.nextId++;
+    return new Promise((resolvePromise, reject) => {
+      this.pending.set(id, { resolve: resolvePromise, reject });
+      this.socket.send(JSON.stringify({ id, method, params }));
+    });
+  }
 
-  try {
-    const activePort = await waitForFile(join(profile, 'DevToolsActivePort'));
-    const port = activePort.trim().split(/\r?\n/)[0];
-    let pages = [];
-    for (let index = 0; index < 100; index += 1) {
-      const response = await fetch(`http://127.0.0.1:${port}/json/list`);
-      pages = await response.json();
-      if (pages.some((page) => page.type === 'page' && page.url.includes('/web-tongluc/'))) break;
-      await delay(100);
-    }
-    await delay(1200);
-    let page;
-    for (let index = 0; index < 50; index += 1) {
-      const response = await fetch(`http://127.0.0.1:${port}/json/list`);
-      pages = await response.json();
-      page = pages.find((item) => item.type === 'page' && item.url === target.url);
-      if (page) break;
-      await delay(100);
-    }
-    if (!page) throw new Error(`No exact page target for ${target.name}/${viewport.name}`);
-    output.push({ page: target.name, viewportName: viewport.name, ...(await evaluate(page.webSocketDebuggerUrl, expression, viewport)) });
-  } finally {
-    child.kill('SIGTERM');
+  once(method, timeoutMs) {
+    return new Promise((resolvePromise, reject) => {
+      const handler = (params) => { clearTimeout(timer); resolvePromise(params); };
+      const list = this.listeners.get(method) || [];
+      list.push(handler);
+      this.listeners.set(method, list);
+      const timer = setTimeout(() => {
+        const current = this.listeners.get(method) || [];
+        this.listeners.set(method, current.filter((item) => item !== handler));
+        reject(new Error(`Timed out waiting for ${method}`));
+      }, timeoutMs);
+    });
+  }
+
+  close() {
+    this.socket.close();
   }
 }
 
-process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
+function assertionExpression(assertion) {
+  const selector = JSON.stringify(assertion.selector || '');
+  const value = JSON.stringify(assertion.value || '');
+  switch (assertion.type) {
+    case 'selector-exists': return `Boolean(document.querySelector(${selector}))`;
+    case 'selector-visible': return `(() => { const e=document.querySelector(${selector}); if(!e)return false; const s=getComputedStyle(e),r=e.getBoundingClientRect(); return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0; })()`;
+    case 'text-includes': return `(() => { const e=document.querySelector(${selector}); return Boolean(e && e.textContent.includes(${value})); })()`;
+    case 'one-h1': return `document.querySelectorAll('h1').length === 1`;
+    case 'no-horizontal-overflow': return `document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1`;
+    default: throw new Error(`Unknown assertion type: ${assertion.type}`);
+  }
+}
+
+const { options } = parseArgs(process.argv.slice(2));
+const planPath = resolve(requireOption(options, 'plan'));
+const plan = await readJson(planPath);
+await validateAgainstSchema(plan, resolve(new URL('../assets/schemas/qa-plan.schema.json', import.meta.url).pathname), 'QA plan');
+validatePlan(plan);
+const timeoutMs = positiveInteger(options.timeout || plan.navigation_timeout_ms, 30000);
+const chromePath = await firstExisting([
+  options.chrome,
+  process.env.CHROME_PATH,
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  '/Applications/Chromium.app/Contents/MacOS/Chromium',
+  '/usr/bin/google-chrome',
+  '/usr/bin/chromium',
+  '/usr/bin/chromium-browser'
+]);
+const profilePath = await mkdtemp(join(tmpdir(), 'tongluc-cdp-qa-'));
+const artifactsDir = options['artifacts-dir'] ? resolve(options['artifacts-dir']) : join(profilePath, 'artifacts');
+const keepArtifacts = options['keep-artifacts'] === true;
+if (plan.screenshots || keepArtifacts) await mkdir(artifactsDir, { recursive: true });
+
+const chrome = spawn(chromePath, [
+  '--headless=new', '--no-first-run', '--no-default-browser-check', '--disable-extensions', '--disable-background-networking',
+  '--remote-debugging-port=0', `--user-data-dir=${profilePath}`, 'about:blank'
+], { stdio: ['ignore', 'ignore', 'pipe'] });
+let chromeError = '';
+chrome.stderr.on('data', (chunk) => { chromeError += String(chunk); });
+
+const report = { plan: planPath, started_at: new Date().toISOString(), viewports: plan.viewports || defaultViewports, results: [] };
+
+try {
+  const port = await waitForDebugPort(profilePath, timeoutMs);
+  for (const page of plan.pages) {
+    const pageUrl = page.url || new URL(page.path, plan.site_url).toString();
+    for (const viewport of report.viewports) {
+      const targetResponse = await fetch(`http://127.0.0.1:${port}/json/new?${encodeURIComponent('about:blank')}`, { method: 'PUT' });
+      if (!targetResponse.ok) throw new Error(`Cannot create CDP target: HTTP ${targetResponse.status}`);
+      const target = await targetResponse.json();
+      const cdp = new CdpClient(target.webSocketDebuggerUrl);
+      await cdp.open();
+      const item = { page: page.name, url: pageUrl, viewport, assertions: [] };
+      report.results.push(item);
+      try {
+        await cdp.send('Page.enable');
+        await cdp.send('Runtime.enable');
+        await cdp.send('Emulation.setDeviceMetricsOverride', { width: viewport.width, height: viewport.height, deviceScaleFactor: 1, mobile: viewport.width < 600 });
+        const loaded = cdp.once('Page.loadEventFired', timeoutMs);
+        await cdp.send('Page.navigate', { url: pageUrl });
+        await loaded;
+        await delay(250);
+        const assertions = page.assertions?.length ? page.assertions : [{ type: 'one-h1' }, { type: 'no-horizontal-overflow' }];
+        for (const assertion of assertions) {
+          const evaluation = await cdp.send('Runtime.evaluate', { expression: assertionExpression(assertion), returnByValue: true });
+          item.assertions.push({ ...assertion, passed: evaluation.result?.value === true });
+        }
+        item.passed = item.assertions.every((assertion) => assertion.passed);
+        if (plan.screenshots || keepArtifacts) {
+          const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
+          const safeName = `${page.name}-${viewport.name}`.toLowerCase().replace(/[^a-z0-9-]+/g, '-');
+          const screenshotPath = join(artifactsDir, `${safeName}.png`);
+          await writeFile(screenshotPath, Buffer.from(screenshot.data, 'base64'));
+          item.screenshot = screenshotPath;
+        }
+      } finally {
+        cdp.close();
+        await fetch(`http://127.0.0.1:${port}/json/close/${target.id}`).catch(() => undefined);
+      }
+    }
+  }
+  report.status = report.results.every((item) => item.passed) ? 'passed' : 'failed';
+  if (report.status === 'failed') process.exitCode = 1;
+} catch (error) {
+  report.status = 'error';
+  report.error = error.message;
+  if (chromeError) report.chrome_error = chromeError.slice(-2000);
+  process.exitCode = 1;
+} finally {
+  report.finished_at = new Date().toISOString();
+  chrome.kill('SIGTERM');
+  await Promise.race([new Promise((resolvePromise) => chrome.once('exit', resolvePromise)), delay(2000)]);
+  if (chrome.exitCode === null) chrome.kill('SIGKILL');
+  if (!keepArtifacts) await rm(profilePath, { recursive: true, force: true });
+  else report.artifacts_dir = artifactsDir;
+}
+
+if (options.output) await writeJson(resolve(options.output), report);
+process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

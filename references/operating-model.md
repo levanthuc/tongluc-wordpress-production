@@ -1,97 +1,85 @@
-# SOP sản xuất website Tổng Lực
+# Operating model v2 — Design First, Flexible Master
 
-## Nguyên tắc vận hành
+## Authority và strategy
 
-- `docs/STATUS.md` là router: chỉ nạp `Current inputs`, thực hiện `Next action`, rồi cập nhật tại gate. Dependency dùng `path @ revision`; mismatch là routing error trước write.
-- Greenfield là nguồn gốc dự án. Artifact project-managed không làm đổi profile; existing/redesign/migration hoặc dữ liệu unmanaged đáng kể mới cần inventory.
-- Brief là nguồn sự thật do owner kiểm soát. Chỉ hỏi khi hard blocker có thể làm sai thiết kế, scope, quyền hạn hoặc thông tin công khai.
+Thứ tự tuyệt đối:
 
-## Delivery mode
+```text
+Owner Direction > Active Requested Scope > Next Recommended Action > Guided Flow
+```
 
-- `guided-wave` (mặc định): duyệt Foundation, Global Shell, Home rồi từng trang độc nhất hoặc archetype wave. Đây là cân bằng mặc định giữa kiểm soát và tốc độ.
-- `strict-sequential`: duyệt riêng từng trang. Chỉ dùng khi owner yêu cầu và chấp nhận nhiều lượt duyệt.
-- `batch-production`: chỉ dùng khi owner chọn và representative prototype/archetype liên quan đã duyệt.
+- `GUIDED_FLOW`: dùng khi owner chỉ nói bắt đầu/tiếp tục. Codex tự chọn bước có giá trị tiếp theo theo dependency graph.
+- `OWNER_DIRECTED`: dùng khi owner nêu target/scope/revision. Thứ tự owner thắng lịch gợi ý; Codex chỉ bổ sung direct prerequisite thật sự bắt buộc.
 
-Ghi mode trong STATUS. Không tự chuyển từ `guided-wave` sang batch.
+Không được biến STATUS, prompt đánh số hoặc page-wave queue thành chuỗi lệnh cứng.
 
-## Pipeline và cổng duyệt
+## Four-layer model
 
-| Stage | Đầu ra | Cổng duyệt |
-|---|---|---|
-| 0–1. Intake/Discovery | Brief, profile, blockers/deferred decisions | Brief duyệt |
-| 2. Architecture | Sitemap, URL, menu intent, SEO/entity map, contract registry | IA duyệt |
-| 3. Contract JIT | Contract chi tiết cho scope kế tiếp | Duyệt đúng contract đang kích hoạt |
-| 4. Global Foundation | Astra globals, logo/favicon, layout/component rules đã áp dụng | Foundation duyệt |
-| 5. Global Shell | Page shells/menu, header, footer/hook responsive | Global Shell duyệt |
-| 6. Home Blueprint | Section–widget/layout map | Home Blueprint duyệt |
-| 7. Home Prototype | Trang chủ responsive bằng nội dung gần thật | Home Prototype duyệt |
-| 8. Page Waves | Trang độc nhất hoặc representative archetype rồi instance | Duyệt theo page/wave/mode |
-| 9. Core QA/Handoff | Site lõi đã kiểm thử và hướng dẫn bàn giao | Website Core Complete |
-| 10. Editorial Growth | Taxonomy, content plan, bài viết | Chỉ mở theo yêu cầu riêng |
+1. `MASTER SITE`: hạ tầng WordPress/Astra/Elementor/UAE/form/menu/target ổn định.
+2. `PROJECT CONTEXT`: brief, sitemap/SEO map, brand assets, baseline verification và project delta.
+3. `DESIGN EXECUTION`: trang/section/component, content-aware layout, responsive và revisions.
+4. `PRODUCTION`: SEO kỹ thuật chi tiết, performance/cache, mail/analytics/security/indexing và launch.
 
-## Continuation handshake
+## Modes
 
-- Mặc định `confirm-next-phase`: sau approval đúng snapshot, cập nhật marker/STATUS và chuyển phase, nhưng chưa chạy Next action mới.
-- Nêu phase/Next action rồi hỏi: `Tôi có tiếp tục thực hiện Next action này không? Chỉ cần trả lời: Tiếp tục.`
-- `Tiếp tục` chỉ chạy Next action hiện có đến hard blocker hoặc gate kế tiếp; không tự duyệt output, đổi scope hoặc thay xác nhận hành động rủi ro.
-- Approval có thêm `và tiếp tục` thì chạy ngay Next action mới.
+- `DESIGN`: mặc định cho Corporate Master. Cho phép dựng các target thiết kế theo owner direction sau khi direct dependencies đủ.
+- `PRODUCTION`: chỉ sau `Site Design Approved` hoặc owner yêu cầu rõ. High-risk publication/integration vẫn cần quyền phù hợp.
 
-## Stage 0–2: Brief và Architecture
+## Dependency graph
 
-Tin facts rõ trong brief; ô trống/TBD không tự động là câu hỏi. Chỉ hỏi blocker không có default an toàn. Greenfield không full audit và không discover MCP ở startup.
+Dependency chỉ là điều kiện trực tiếp, không phải thứ tự toàn dự án.
 
-Sau Brief approval, IA phải xác định URL/content type, intent, primary topic, CTA, schema owner, internal links, archetype và menu intent. Với Blog/Knowledge thuộc launch, chốt tối thiểu archive, taxonomy và URL dù bài viết được deferred. Với WooCommerce, bổ sung Shop/category/product/cart/checkout/account/policy và Single/Archive.
+| Requested scope | Direct dependency tối thiểu |
+|---|---|
+| Foundation delta | Brief/brand facts liên quan; baseline verification khi dùng master |
+| Home | Baseline verified; page target; business facts; Design Delta; Home SEO brief/content requirements |
+| Header/Menu | Logo/brand identity; Primary Menu; CTA nếu có; Design Delta; target ownership |
+| Footer | Footer target; company/contact facts; relevant navigation; Design Delta |
+| About | About target; company facts; content contract; Design Delta; SEO brief nếu cần |
+| Contact | Contact target; contact facts; CF7 target; Design Delta; production SMTP không phải dependency Design Mode |
+| Service/other page | Brief + SEO/content constraints + Design Delta; tạo page/menu record là direct prerequisite nếu sitemap đã xác nhận |
+| Section/Component | Current live structure hoặc blueprint fragment + content/acceptance của scope |
+| Integrated QA | Page/component output + các global dependency thực tế đã tồn tại |
+| Production | Site Design Approved hoặc explicit owner request + production scope |
 
-Sitemap đồng thời giữ contract registry tối thiểu; không tạo nhiều URL gần trùng chỉ để nhắm biến thể từ khóa.
+Ví dụ: Home có thể được dựng trước Header và ghi `Global Shell Integration Pending`; khi Header/Footer hoàn tất, chỉ chạy Integrated QA. Footer không bắt buộc chờ Home.
 
-## Stage 3: Contract JIT
+## Scope và revision
 
-Không bắt buộc tạo toàn bộ contract chi tiết trong một lượt. Thứ tự mặc định:
+Scope: `SITE`, `PAGE`, `SECTION`, `COMPONENT`.
 
-1. Shared/Global Shell nếu có copy hoặc CTA toàn cục.
-2. Home.
-3. Trang độc nhất/rủi ro cao.
-4. Representative archetype.
-5. Instance chỉ cần dữ liệu khác biệt.
+Task type: `CREATE`, `REVISE`, `INTEGRATE`, `QA`, `PRODUCE`.
 
-Trước blueprint của scope nào, contract scope đó phải khóa message, heading, CTA, facts/evidence, media, dynamic source, entity và schema. Không dùng lorem ipsum để quyết định layout. Contract Draft tạo sớm được giữ như planning artifact nhưng không tự mở gate.
+Revision intent: `POLISH`, `REDESIGN`, `REPLACE_DIRECTION`, `RESPONSIVE_FIX`, `CONTENT_LAYOUT_FIX`, `SECTION_REVISION`.
 
-## Stage 4: Global Foundation
+Revision flow: đọc current live structure → xác định preservation constraints → write đúng scope → read-back → responsive QA liên quan → cập nhật state. Không rerun toàn workflow nếu direct dependency không đổi.
 
-Nếu preconfigured baseline `Current`, không audit/reapply các nhóm `Keep/Skip`; chép mapping cần dùng vào foundation và chỉ thực hiện `Action required`/delta. Nếu không có baseline này, thiết lập và áp dụng Astra palette, font/H1–H6 responsive, content width, buttons/forms, radius, spacing, logo/favicon và image policy. Elementor/UAE kế thừa theme trừ ngoại lệ đã ghi. Chỉ xác minh frontend phần vừa thay đổi, ghi bằng chứng trong `docs/design-foundation.md`, rồi dừng để owner duyệt trước Global Shell.
+## State model
 
-## Stage 5: Global Shell
+Mỗi page/component có thể mang state độc lập: `Not Started`, `Planned`, `Design In Progress`, `Design Complete`, `Page Design Approved`, `Revision Requested`, `QA Pending`, `Integrated QA Passed`, `Production Ready`, `Complete`.
 
-Tái sử dụng page/menu/layout ID trong preconfigured baseline nếu có; resolve đúng target nhưng không inventory hoặc tạo trùng. Nếu chưa có, tạo page shell nháp và menu theo IA khi cần. Không publish production ngoài quyền hiện có. Dựng header/footer bằng Astra Builder hoặc Site Builder đúng ownership; Hook dùng cho vị trí như pre-footer CTA khi phù hợp.
+Dependency flags có thể đi kèm: `Global Shell Integration Pending`, `Content Pending`, `SEO Brief Pending`, `Asset Pending`, `Revalidation Required`.
 
-Kiểm tra frontend đăng xuất desktop/tablet/mobile, sticky/transparent/off-canvas và display conditions. Ghi bằng chứng trong `docs/global-shell-approval.md`; dừng để duyệt.
+Approval gates linh hoạt: `Page Design Approved`, `Design Direction Approved`, `Site Design Approved`, `Production Approved`, `Launch Approved`. Owner có thể duyệt theo page hoặc duyệt direction/site; không bắt buộc approval từng section. Codex không tự duyệt.
 
-## Stage 6–7: Home Blueprint và Prototype
+## Guided Flow khuyến nghị
 
-Home là full unique-page blueprint mặc định. Mỗi section map mục tiêu/nội dung sang Elementor/UAE widget, CTA, responsive, SEO/A11y/data và layout. Flexbox Container là mặc định; Grid chỉ dùng cho bố cục hai chiều/card matrix. Không dùng Section/Column legacy trong build mới hoặc lồng container không có mục đích.
+Đây là default hữu ích, không phải luật cứng:
 
-Sau khi blueprint duyệt, build Home bằng nội dung gần thật. Kiểm tra editor và frontend đăng xuất desktop/tablet/mobile; header/footer, CTA, form, query, FAQ/schema và cache behavior liên quan. Ghi `docs/prototype-approval.md` và dừng để duyệt. Chỉ mở Page Waves sau approval.
+1. Xác nhận Project Context và baseline.
+2. Chốt sitemap/SEO map và Foundation delta.
+3. Dựng page/section có giá trị cao nhất; thường là Home.
+4. Dựng Header/Footer/Menu hoặc target owner ưu tiên.
+5. Dựng các page theo archetype/priority; Page Wave chỉ là scheduling aid.
+6. Integrated Design QA và `Site Design Approved`.
+7. Production Mode theo scope.
 
-## Stage 8: Page Waves
+## Corporate Master và compatibility
 
-Theo `docs/page-wave-status.md`, chỉ có một active scope:
+Corporate Master chỉ cho website doanh nghiệp/dịch vụ không WooCommerce. Fixed ID/name chỉ dùng sau verification theo manifest. Không full inventory khi baseline khớp; chỉ resolve target cần dùng. Website không khớp master chuyển standard discovery/profile, không ép fixed contract.
 
-1. Contract JIT và approval.
-2. Blueprint trang độc nhất hoặc representative archetype và approval.
-3. Build, read-back, frontend/responsive QA.
-4. Approval theo delivery mode.
-5. Chuyển scope tiếp theo hoặc tạo instance theo archetype đã duyệt.
+## Completion
 
-Trang độc nhất/chuyển đổi cao như Báo giá, Liên hệ, landing, Cart/Checkout được duyệt riêng. Trang lặp dùng representative archetype rồi batch instance. Trang pháp lý/nội dung đơn giản có thể gom wave nếu owner không chọn strict sequential.
-
-Resolve exact live target và đối chiếu build manifest/preconfigured baseline trước write; không query toàn site nếu ID/key đã rõ. Chỉ ghi managed sau write + read-back. Tái sử dụng form/shortcode và Woo baseline `Keep/Skip`; không tạo/reconfigure trùng. Woo vẫn có representative cho type/variation. Pattern chưa được Home bao phủ phải có representative prototype trước batch.
-
-## Stage 9–10: Core Complete và Editorial Growth
-
-QA frontend đăng xuất theo `qa-and-handoff.md`, purge theo policy và không đổi LiteSpeed settings. Bàn giao vận hành, accepted issues và ngoại lệ. Khi đạt, ghi `Website Core Complete` và dừng.
-
-Không tự chuyển sang lập kế hoạch hoặc viết bài. Editorial Growth chỉ mở khi owner yêu cầu; dùng workflow SEO/AIO/AEO/LLMO riêng.
-
-## Scope change và revalidation
-
-Xin duyệt khi thay sitemap, contract, archetype, content model, checkout, tích hợp, ngôn ngữ hoặc template toàn site. Copy/ảnh instance vẫn đúng contract không phải scope change cấu trúc. Dependency đổi ảnh hưởng downstream thì đặt output liên quan thành `Revalidation required`.
+- Design hoàn tất khi mọi scope launch có state phù hợp, integrated QA không còn blocker và owner cấp `Site Design Approved`.
+- Production hoàn tất khi production checklist theo scope đạt và owner cấp `Production Approved`/`Launch Approved` khi áp dụng.
+- Editorial Growth không tự khởi chạy; dùng yêu cầu riêng.

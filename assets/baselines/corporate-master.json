@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "1.0.0",
+  "baseline": {
+    "id": "corporate-master",
+    "version": "2.0.0",
+    "profile": "corporate-service",
+    "woocommerce": false,
+    "default_execution_mode": "DESIGN"
+  },
+  "contract": {
+    "targets": {
+      "homepage": {
+        "kind": "post",
+        "expected_id": 50,
+        "expected_post_type": "page",
+        "purpose": "static-homepage",
+        "ownership": "master-infrastructure-project-design"
+      },
+      "contact": {
+        "kind": "post",
+        "expected_id": 55,
+        "expected_post_type": "page",
+        "purpose": "contact-page",
+        "ownership": "master-infrastructure-project-design"
+      },
+      "about": {
+        "kind": "post",
+        "expected_id": 57,
+        "expected_post_type": "page",
+        "purpose": "about-page",
+        "ownership": "master-infrastructure-project-design"
+      },
+      "footer": {
+        "kind": "astra-advanced-hook",
+        "expected_id": 59,
+        "expected_post_type": "astra-advanced-hook",
+        "purpose": "site-footer-target",
+        "ownership": "master-target-project-composition"
+      },
+      "contact_form": {
+        "kind": "contact-form-7",
+        "expected_id": "843524c",
+        "purpose": "primary-contact-form",
+        "presentation": "uae-cf7-styler",
+        "ownership": "master-form-project-presentation"
+      }
+    },
+    "menus": {
+      "primary": {
+        "expected_name": "Primary Menu",
+        "purpose": "desktop-primary-navigation"
+      },
+      "off_canvas": {
+        "expected_name": "Off-Canvas Menu",
+        "purpose": "mobile-off-canvas-navigation"
+      }
+    }
+  },
+  "inherits": {
+    "astra": ["typography", "buttons", "container"],
+    "elementor": ["classic-v3", "flexbox-containers", "theme-font-color-inheritance"],
+    "uae": ["common-corporate-module-profile"],
+    "rank_math": ["technical-baseline"]
+  },
+  "project_delta_owns": [
+    "brand-assets",
+    "content",
+    "imagery",
+    "visual-direction",
+    "hierarchy",
+    "section-order",
+    "widget-composition",
+    "responsive-behavior",
+    "seo-briefs",
+    "internal-links"
+  ],
+  "production_deferred": [
+    "rank-math-detail",
+    "performance-cache",
+    "production-smtp",
+    "analytics",
+    "security",
+    "indexing"
+  ]
+}

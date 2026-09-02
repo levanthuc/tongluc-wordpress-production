@@ -1,0 +1,12 @@
+{
+  "pattern_version": "1.0.0",
+  "name": "service-card-grid",
+  "purpose": "Optional starting structure for a responsive service-card matrix",
+  "rules": {
+    "layout": "Grid for two-dimensional card matrix; Flexbox inside each card",
+    "responsive": "3/2/1 or project-approved alternative",
+    "content": "Project must replace all sample copy and choose native Elementor/UAE widgets",
+    "usage": "May be reused, modified or ignored"
+  },
+  "slots": ["section-heading", "intro", "service-cards", "section-cta"]
+}

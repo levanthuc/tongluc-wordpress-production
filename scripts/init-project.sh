@@ -74,4 +74,4 @@ fi
 )
 
 echo "Tổng Lực project starter initialized at: $target_dir"
-echo "Next: open docs/STATUS.md, complete its Current inputs, then follow Next action."
+echo "Next: complete docs/project-brief.md and docs/STATUS.md, then state the first requested design scope."

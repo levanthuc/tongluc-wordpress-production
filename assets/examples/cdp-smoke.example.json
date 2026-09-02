@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "navigation_timeout_ms": 10000,
+  "viewports": [
+    { "name": "smoke", "width": 390, "height": 844 }
+  ],
+  "pages": [
+    {
+      "name": "fixture",
+      "url": "data:text/html,<main><h1>Smoke</h1></main>",
+      "assertions": [
+        { "type": "one-h1" },
+        { "type": "no-horizontal-overflow" },
+        { "type": "selector-visible", "selector": "main" }
+      ]
+    }
+  ]
+}

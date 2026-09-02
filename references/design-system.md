@@ -1,5 +1,11 @@
 # Design foundation với Astra + Elementor V3 + UAE
 
+## Baseline inheritance
+
+Với Corporate Master đã verified, không sao chép lại toàn bộ setting vào project. `docs/design-foundation.md` chỉ ghi baseline/version, inherited values cần tham chiếu, project overrides, visual direction và exception. Mọi giá trị master vẫn được kế thừa cho đến khi một delta được ghi rõ.
+
+Baseline không sở hữu page composition. Project được tự do thay hero, section order, hierarchy, widget, imagery và responsive behavior miễn không phá business/SEO constraints hoặc target contract.
+
 ## Nguồn chuẩn
 
 Astra Customizer là source of truth cho:
@@ -31,7 +37,7 @@ Mỗi dự án ghi bảng ánh xạ:
 | Soft surface |  |  | Section xen kẽ |
 | Dark surface |  |  | Footer/CTA tối |
 
-Không gọi màu bằng tên thị giác như “màu đỏ 2” trong thiết kế. Gọi theo vai trò để dễ thay thương hiệu.
+Không gọi màu bằng tên thị giác như “màu đỏ 2” trong thiết kế. Gọi theo vai trò để dễ thay thương hiệu. Với master, bảng chỉ ghi role bị override hoặc mapping project cần dùng; không audit/rewrite slot inherited chỉ để lấp bảng.
 
 ## Typography
 
@@ -104,3 +110,7 @@ Phải:
 - Đặt CSS tập trung trong child theme/plugin dự án hoặc nơi đã thống nhất.
 - Không dùng selector dựa vào ID Elementor ngẫu nhiên nếu có thể dùng class ổn định.
 - Ghi lý do trong handoff.
+
+## Design Mode boundary
+
+Trong Design Mode, chỉ thay đổi hạ tầng kỹ thuật khi đó là direct dependency của output hiển thị. Không tự tối ưu LiteSpeed, SMTP production, analytics, security hoặc indexing. Rank Math chỉ tham gia ở mức kiến trúc/schema ownership cần để tránh thiết kế sai; cấu hình SEO production chi tiết để sau Site Design Approval hoặc explicit owner request.

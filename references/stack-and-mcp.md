@@ -10,6 +10,8 @@
 
 Existing/redesign giữ form/SEO/cache engine hiện có trừ khi scope phê duyệt migration.
 
+Corporate Master v2 chỉ áp dụng website doanh nghiệp/dịch vụ không WooCommerce và dùng manifest `assets/baselines/corporate-master.json`. Website bán hàng dùng profile/commerce baseline khác; không nhận fixed ID của Corporate Master.
+
 ## Ownership của local runtime
 
 XAMPP, Apache, MySQL và runtime máy local do owner quản lý; chúng không thuộc scope thiết kế/build WordPress mặc định.
@@ -86,9 +88,20 @@ Fingerprint chỉ tổng hợp bằng chứng sẵn có cho task: endpoint, prin
 
 - Xác định read/write, idempotence, permission, target và rollback.
 - Smoke-test đọc trước khi write khi điều đó giảm rủi ro.
-- Có ability: dùng ability. Không có thì dùng documented REST API trong scope. Nếu cả hai không đáp ứng, báo giới hạn và dừng affected task; không đọc PHP source, tạo helper, dùng WP-CLI hoặc sửa trực tiếp database trong workflow production thông thường. Chỉ dùng fallback code/CLI khi owner yêu cầu hoặc phê duyệt rõ tác vụ phát triển/debug/compatibility và phạm vi thay đổi.
+- Có ability: dùng ability. Không có thì dùng documented REST API trong scope. Arbitrary REST write là escape hatch cần cờ/xác nhận rõ, không phải build path thường lệ. Nếu cả hai không đáp ứng, báo giới hạn và dừng affected task; không đọc PHP source, tạo helper, dùng WP-CLI hoặc sửa trực tiếp database trong workflow production thông thường. Chỉ dùng fallback code/CLI khi owner yêu cầu hoặc phê duyệt rõ tác vụ phát triển/debug/compatibility và phạm vi thay đổi.
 - Chuỗi write MCP chuẩn: cache chọn ability → live get-info → resolve/read target → write → read back.
 - Cập nhật cache bằng ability, schema summary, lần kiểm tra và fallback vừa dùng.
+
+## Reusable tooling
+
+- Dùng `scripts/mcp-client.mjs` cho low-level connect/discover/info/schema/execute/read.
+- Dùng `scripts/rest-client.mjs` cho documented REST read/upload hoặc escape hatch được cho phép.
+- Dùng `scripts/elementor-build.mjs` với project build plan đã validate để verify target, live-info, preflight, write, regenerate CSS và read-back.
+- Dùng `scripts/cdp-qa.mjs` với QA plan; không hardcode domain, ID, brand, year hoặc selector dự án vào script.
+- Dependency được pin bằng `package.json`/`package-lock.json`; không import SDK từ `_npx` cache hoặc absolute user path.
+- Temp data/log/screenshot được phép. Không tạo lại temp `.mjs` nếu packaged tool đáp ứng. Temp code chỉ cho capability thiếu hoặc diagnostic một lần, không secret, có lý do; nhu cầu lặp lại phải được promote vào `scripts/`.
+
+Chi tiết plan/schema và command ở [tooling-and-build-plans.md](tooling-and-build-plans.md).
 
 ## Cache invalidation
 

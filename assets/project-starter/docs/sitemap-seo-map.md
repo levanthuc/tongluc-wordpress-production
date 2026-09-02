@@ -1,44 +1,40 @@
-# Sitemap, Search Intent & Conversion Map
+# Sitemap & SEO-Aware Architecture Map
 
-> Trạng thái: Draft · Revision: YYYY-MM-DD-r1 · Chủ sở hữu: Chưa xác định · Cập nhật nội dung: YYYY-MM-DD HH:MM TZ · Người duyệt/ngày: Chưa
+> Trạng thái: Draft · Revision: YYYY-MM-DD-r1 · Chủ sở hữu: Chưa · Người duyệt/ngày: Chưa
 
-## Mục tiêu tổng thể
+## Site goals
 
-- Chuyển đổi chính:
-- Chuyển đổi phụ:
-- Chủ đề/địa phương ưu tiên:
-- Đối tượng tìm kiếm:
+- Primary conversion:
+- Secondary conversion:
+- Core audience/market:
+- Geographic intent:
+- Entity/offer priorities:
 
 ## Page map
 
-| URL dự kiến | Loại/archetype | Mục đích người dùng | Chủ đề/từ khóa chính | Thực thể | CTA | Schema owner | Content contract | Internal links | Trạng thái |
-|---|---|---|---|---|---|---|---|---|---|
-| / | Trang chủ | | | | | | | | |
+| Page/URL | Type/archetype | Primary keyword/topic | Secondary topics | Intent | Audience | Geographic intent | Conversion goal/CTA | Internal links | Priority | SEO brief | State |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Home `/` | Unique | | | | | | | | High | Required | Planned |
 
-## Menu
+Full SEO brief: Home, main service, local/commercial và important solution. About/Contact có thể lightweight. Privacy/utility không cần full brief.
 
-- Menu chính:
-- Menu phụ:
+## Menu intent
+
+- Primary Menu:
+- Off-Canvas Menu:
 - Footer navigation:
-- Breadcrumb:
+- Breadcrumb source:
 
-## Topic clusters
+## SEO/entity constraints
 
-| Pillar page | Cluster articles | Câu hỏi cần trả lời | Trang dịch vụ/sản phẩm đích |
-|---|---|---|---|
-| | | | |
+- One-page/one-intent and cannibalization risks:
+- Organization/Service/Place relationships:
+- NAP/legal facts source:
+- Schema owner and duplicate prevention:
+- Index/noindex/canonical direction for Production:
 
-## Tránh xung đột
+## Contract/blueprint registry
 
-- Trang có nguy cơ cannibalization:
-- Nội dung mỏng/trùng lặp:
-- URL cũ cần redirect:
-- Trang noindex hợp lý:
-
-## Dữ liệu AEO/LLMO
-
-- Tên/thực thể chính và mô tả nhất quán:
-- Fact có nguồn xác minh:
-- Câu hỏi trả lời trực tiếp:
-- Tác giả/người chịu trách nhiệm:
-- Ngày cập nhật/chính sách review:
+| Scope | SEO brief path | Content contract path | Blueprint/archetype | Direct dependencies |
+|---|---|---|---|---|
+| Home | | | | |

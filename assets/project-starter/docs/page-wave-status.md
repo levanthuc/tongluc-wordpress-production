@@ -1,17 +1,11 @@
-# Page Wave Status
+# Optional Page Scheduling
 
-> Trạng thái: Not started / Active / Core complete · Cập nhật: YYYY-MM-DD HH:MM TZ
+> Trạng thái: Optional / Active / Complete · Cập nhật: YYYY-MM-DD HH:MM TZ
 
-- Delivery mode: `guided-wave`
-- Active scope: Chưa có
-- Completion target: `Website Core Complete`
+File này là scheduling aid, không phải router authority. Explicit owner request có thể thay thứ tự. State chính nằm trong `docs/STATUS.md`.
 
-Chỉ một row được `Active`. Contract và blueprint phải đúng revision/approval trước build. Trang độc nhất duyệt riêng; archetype lặp duyệt representative rồi mới batch instance.
+| Priority | Scope/target | Archetype | Current state | Dependency flags | Suggested next |
+|---:|---|---|---|---|---|
+| 1 | Home | Unique | Not Started | | |
 
-| Thứ tự | Scope/URL/archetype | Loại | Contract @ revision | Blueprint @ revision | Build/QA | Approval | Trạng thái/Next |
-|---:|---|---|---|---|---|---|---|
-| 1 | Home | Unique prototype | | | | | Planned |
-
-Loại: `Unique`, `High-conversion`, `Representative archetype`, `Archetype instances`, `Simple batch`, `Woo transactional`.
-
-Khi toàn bộ Core launch đạt và QA/Handoff được duyệt, đổi trạng thái `Core complete`, cập nhật STATUS thành `Website Core Complete` và dừng. Không thêm bài viết/editorial wave nếu owner chưa mở scope Editorial Growth.
+Không dùng queue để từ chối một requested scope hợp lệ. Chỉ tránh concurrent writes xung đột cùng target.

@@ -2,4 +2,4 @@ interface:
   display_name: "Tổng Lực WordPress Production"
   short_description: "SOP thiết kế WordPress bằng Astra, Elementor và UAE"
   brand_color: "#DB4437"
-  default_prompt: "Use $tongluc-wordpress-production to plan and build this WordPress website according to the Tổng Lực SOP."
+  default_prompt: "Use $tongluc-wordpress-production. Read AGENTS.md and docs/STATUS.md, then execute my requested scope with direct dependencies only; use Guided Flow only when I do not name a target."

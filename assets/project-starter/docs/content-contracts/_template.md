@@ -12,11 +12,13 @@ Mẫu gốc: sao chép thành `[page-or-archetype].md` trước khi điền; `_t
 - Search intent:
 - Đối tượng và trạng thái nhận thức:
 - Mục tiêu kinh doanh:
+- SEO brief path/revision hoặc lý do lightweight/not required:
+- Requested scope: SITE / PAGE / SECTION / COMPONENT
 
 ## Message contract
 
 - Một câu trả lời/lời hứa chính:
-- H1 dự kiến:
+- H1 duy nhất dự kiến:
 - H2/H3 hoặc nhóm thông tin bắt buộc:
 - CTA chính/phụ:
 - Phản đối/câu hỏi phải giải quyết:
@@ -44,3 +46,5 @@ Mẫu gốc: sao chép thành `[page-or-archetype].md` trước khi điền; `_t
 - [ ] Nội dung đủ để chọn section/widget mà không dùng lorem ipsum
 - [ ] Claim quan trọng có nguồn hoặc được chủ dự án xác nhận
 - [ ] CTA, heading, entity và schema owner rõ ràng
+- [ ] SEO constraints có trước section/widget decisions khi page thuộc nhóm SEO brief bắt buộc
+- [ ] Nội dung đủ thật để kiểm hierarchy và responsive; không dùng placeholder làm quyết định cuối

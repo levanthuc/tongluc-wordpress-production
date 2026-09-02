@@ -1,97 +1,56 @@
-# Owner-Preconfigured Baseline
+# Baseline Verification & Project Delta
 
-> Trạng thái: Draft · Revision: YYYY-MM-DD-r1 · Owner xác nhận/ngày: Chưa · Environment/Site URL: Chưa
+> Trạng thái: Draft · Revision: YYYY-MM-DD-r1 · Baseline: corporate-master / custom / none · Version: 2.0.0 / N/A · Owner xác nhận/ngày: Chưa
 
-Chỉ có hiệu lực khi header là `Current` và STATUS trỏ đúng revision. `Keep/Skip` nghĩa là không audit, query để chứng minh, reapply hoặc tạo trùng. Codex chỉ làm `Action required`; trước exact write vẫn resolve target, lấy live ability info và read-back. Mọi path là exact input: thiếu file thì hoãn đúng task, không quét thư mục để đoán.
+Corporate Master contract nằm ở skill `assets/baselines/corporate-master.json`. Không chép credential vào đây. Fixed IDs chỉ hợp lệ cho đúng baseline/version và phải được xác minh theo target trước write.
 
-## Brand assets
+Trạng thái: `Inherited`, `Verified`, `Project Override`, `Drift`, `Not Applicable`.
 
-| Asset | Path/Media ID/URL | Variant/kích thước | Trạng thái | Action required |
+## Fixed targets
+
+| Role | Expected identity | State | Live evidence | Project action/delta |
 |---|---|---|---|---|
-| Logo chính | `assets/brand/...` | Original/light surface | Keep/Skip | None |
-| Logo inverted | | Chỉ dùng dark surface | N/A/Keep | |
-| Favicon | `assets/brand/...` | 512×512 hoặc chuẩn đã duyệt | Keep/Skip | None |
+| Static Homepage | Page ID 50 | Inherited | | |
+| Contact | Page ID 55 | Inherited | | |
+| About | Page ID 57 | Inherited | | |
+| Footer | Astra Advanced Hook ID 59 | Inherited | | Composition is project-defined |
+| Contact Form | CF7 ID 843524c | Inherited | | Present with UAE CF7 Styler |
+| Desktop Menu | Primary Menu | Inherited | | |
+| Mobile Menu | Off-Canvas Menu | Inherited | | |
 
-## Theme globals đã cấu hình
+Nếu project không dùng Corporate Master, đổi toàn bộ row thành `Not Applicable` và resolve target theo profile; không cố tạo lại các ID này.
 
-| Nhóm | Giá trị owner xác nhận | Trạng thái | Action required |
+## Inherited systems
+
+| System | Master ownership | State | Project override/delta |
 |---|---|---|---|
-| Typography | Arial system font; H1–H6/Body responsive đã cấu hình | Keep/Skip | None |
-| Container | 1200px; narrow 750px; Full width; Normal; Unboxed | Keep/Skip | None |
-| Outer margin | 0/0/0/0 mọi thiết bị | Keep/Skip | None |
-| Inner padding | D 40/20/40/20; T 30/20/30/20; M 20/15/20/15 | Keep/Skip | None |
-| Primary button | Weight 600; radius 8; D 14/24; M 12/20; filled brand/white | Keep/Skip | None |
-| Secondary button | Radius 8; D 12/22; M 10/18; 1px brand/transparent | Keep/Skip | None |
-| Global palette | Ghi mapping brand/theme hiện tại | Current/Delta | [Chỉ delta được phép] |
+| Astra typography/buttons/container | Global baseline | Inherited | |
+| Elementor V3 known-good settings | Builder baseline | Inherited | |
+| UAE common module profile | Module baseline | Inherited | |
+| Rank Math technical baseline | Technical SEO baseline | Inherited | Design Mode chỉ làm phần SEO-aware cần thiết |
+| LiteSpeed | Owner-managed | Inherited | Không đổi settings |
 
-Widget Elementor/UAE kế thừa theme. Override chỉ khi blueprint có variant component có chủ đích; không override từng widget cho giá trị đã có global.
+## Assets và identity
 
-## Elementor baseline
+| Asset/fact | Exact path/Media ID/value | State | Action |
+|---|---|---|---|
+| Logo | | Project Override | |
+| Favicon | | Project Override | |
+| Site title/tagline | | Project Override | |
 
-| Setting | Giá trị owner xác nhận | Trạng thái |
-|---|---|---|
-| Default colors/fonts | Disabled để kế thừa Astra | Keep/Skip |
-| Google Fonts | Disabled | Keep/Skip |
-| Flexbox Container | Active | Keep/Skip |
-| Inline Font Icons | Active | Keep/Skip |
-| Panel Promotions | Inactive | Keep/Skip |
-| Site content width/gap | 1200px / 24px | Keep/Skip |
+Exact path bị thiếu thì hoãn đúng task liên quan; không quét thư mục để đoán.
 
-Không audit/bật tắt experiment hoặc security-sensitive upload setting nếu owner không yêu cầu trực tiếp.
+## Authorized project delta
 
-## Existing managed targets
+- Visual direction:
+- Brand colors/fonts overrides:
+- Page/section/widget composition:
+- Header/Footer/menu delta:
+- Form fields/notification delta:
+- Accepted drift/exception:
 
-Mỗi ID/key phải dành cho chính dự án này; không sao chép ID sang site khác.
+## Connection/runtime
 
-| Type | ID/key | Name/slug/location | Ownership | Action required |
-|---|---|---|---|---|
-| Page | | Home/static homepage | Owner-adopted | Build content |
-| Page | | Posts page | Owner-adopted | Build/archive as scoped |
-| Page | | Contact | Owner-adopted | Build content |
-| Page | | About | Owner-adopted | Build content |
-| Astra layout | | Header/Footer/Hook + placement/conditions | Owner-adopted | Build only specified target |
-| Menu | | Primary/Desktop | Owner-adopted | Reuse |
-| Menu | | Off-canvas/Mobile | Owner-adopted | Reuse |
-
-Core preset: permalink, timezone/language, static homepage/posts page và discussion đã được owner xác nhận; ghi delta nếu Codex được phép thay đổi. Không audit `.htaccess` hoặc WP Core settings chỉ để xác minh.
-
-## Form preset
-
-- Engine/title/ID:
-- Shortcode: `[contact-form-7 id="..." title="..."]`
-- Allowed presentation: Elementor Shortcode hoặc UAE CF7 Styler khi blueprint cần style.
-- Action: Reuse; không tạo form khác trừ scope mới được duyệt.
-
-## WooCommerce preset — chỉ website bán hàng
-
-- Currency/country/format:
-- Shop/Cart/Checkout/My Account IDs:
-- State: N/A / Keep/Skip
-- Action required:
-
-Không audit/reapply currency/system-page mapping nếu state `Keep/Skip`; vẫn QA flow đại diện khi thuộc launch scope.
-
-## Connection, cache và runtime
-
-- Global MCP connection: Configured / Not configured; không ghi secret.
-- Capability cache coverage:
-- Cache policy/state: Owner-managed; Local plugin inactive / policy khác.
-- XAMPP/Apache/MySQL: Owner-managed; kiểm tra thường lệ chỉ HTTP/REST/MCP.
-- Action required:
-
-## Visual và content rules theo dự án
-
-- Logo component colors/approved surfaces:
-- Header fallback surface: `#FFFFFF` / `#F8FAFC` / khác đã duyệt.
-- Dark header chỉ dùng khi có inverted logo đã cung cấp.
-- Zalo: Direct link `https://zalo.me/<number>` / N/A; không SDK nếu không được yêu cầu.
-- Privacy/Terms: Ready / Deferred before publication / N/A.
-- Evidence/media: Owner-provided / Licensed stock / Placeholder prototype only.
-
-## Authorized delta
-
-Chỉ liệt kê tác vụ Codex cần làm trong phase hiện tại, ví dụ palette delta, Global Shell target hoặc Page Wave target. Mục trống không cấp quyền thay đổi.
-
-- Action required:
-- Target IDs/keys:
-- Acceptance/test scope:
+- Global MCP: Configured / Not configured; config path (không secret):
+- Capability cache:
+- XAMPP/Apache/MySQL: Owner-managed; chỉ HTTP/REST/MCP health check

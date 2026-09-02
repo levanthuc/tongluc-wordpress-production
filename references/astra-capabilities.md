@@ -11,7 +11,7 @@ Không bật tất cả module theo thói quen. Bật theo kiến trúc đã duy
 - Container/content width.
 - Page/sidebar/content layout.
 
-Đây là foundation để Elementor/UAE kế thừa. Thiết lập theme trước page styling.
+Đây là foundation để Elementor/UAE kế thừa. Xác định inherited value/project delta trước khi styling một component phụ thuộc nó; không biến việc hoàn thiện toàn bộ theme thành gate cứng trước mọi page/section owner chỉ định.
 
 ## Header và Footer Builder
 

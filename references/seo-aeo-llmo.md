@@ -11,6 +11,17 @@
 
 Trong workflow dự án, khóa intent, entity, message, evidence, CTA và schema owner trong content contract trước khi chọn layout/widget hoặc viết bản dài.
 
+## SEO-aware design contract
+
+SEO không bị hoãn toàn bộ đến Production. Ngay Design Mode, sitemap/SEO map phải ghi cho mỗi page quan trọng: URL, primary keyword/topic, secondary topics, intent, audience, geographic intent, conversion goal, internal-link direction và priority.
+
+- Full SEO brief bắt buộc cho Home, main service, local/commercial và important solution pages.
+- About/Contact dùng lightweight brief trừ khi có search goal đáng kể.
+- Privacy/utility/legal không cần full SEO brief.
+- SEO constraints phải có trước content contract; contract có trước H1/H2/H3, sections và blueprint.
+- Mỗi page indexable chỉ có một H1; heading order logic, copy đủ thật và internal links được định hướng từ design stage.
+- Design Mode không buộc hoàn tất Rank Math metadata/indexing. Phần technical/detail production được làm sau `Site Design Approved` hoặc explicit owner request.
+
 ## Technical baseline
 
 - HTTPS, một hostname chuẩn và redirect nhất quán.

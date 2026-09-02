@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "project": {
+    "name": "corporate-home-example",
+    "baseline_id": "corporate-master",
+    "baseline_version": "2.0.0",
+    "requested_scope": "PAGE",
+    "revision_intent": "POLISH"
+  },
+  "targets": [
+    {
+      "name": "homepage-example",
+      "baseline_role": "homepage",
+      "expected_post_type": "page",
+      "skip_if_unchanged": true,
+      "structure": [
+        {
+          "id": "hero001",
+          "elType": "container",
+          "settings": {
+            "content_width": "boxed",
+            "flex_direction": "column"
+          },
+          "elements": [
+            {
+              "id": "heading1",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "A clear value proposition",
+                "header_size": "h1"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ],
+      "operations": {
+        "verify": {
+          "ability": "uae/builder-get-structure",
+          "parameters": { "post_id": "$TARGET_ID", "full": true }
+        },
+        "write": {
+          "ability": "uae/builder-build",
+          "parameters": { "post_id": "$TARGET_ID", "structure": "$STRUCTURE_JSON" }
+        },
+        "regenerate_css": {
+          "ability": "uae/builder-regenerate-css",
+          "parameters": { "post_id": "$TARGET_ID" }
+        },
+        "readback": {
+          "ability": "uae/builder-get-structure",
+          "parameters": { "post_id": "$TARGET_ID", "full": true }
+        }
+      },
+      "expect": { "exact_structure_match": false }
+    }
+  ]
+}

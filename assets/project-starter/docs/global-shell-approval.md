@@ -1,4 +1,4 @@
-# Global Shell Approval
+# Global Shell Design State
 
 > Trạng thái: Draft · Revision: YYYY-MM-DD-r1 · Chủ sở hữu: Chưa xác định · Cập nhật nội dung: YYYY-MM-DD HH:MM TZ · Người duyệt/ngày: Chưa
 
@@ -31,10 +31,11 @@
 | Footer/legal/contact | | | | |
 | Hook/display conditions | | | | |
 
-## Quyết định
+## Quyết định/state
 
 - Feedback/điều chỉnh:
 - Issue được chấp nhận:
-- Phạm vi được phép chuyển sang Home Blueprint:
+- State: Design Complete / Design Direction Approved / Integrated QA Passed / Revision Requested
+- Page/component nào đang chờ shell integration:
 
-Dependency đổi ảnh hưởng shell thì đặt `Revalidation required`; không tiếp tục page production cho đến khi shell hợp lệ lại.
+Dependency đổi chỉ đặt `Revalidation required` cho output bị ảnh hưởng. Page không phụ thuộc trực tiếp có thể tiếp tục; page provisional cần Integrated QA sau khi shell ổn định.

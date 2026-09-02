@@ -1,39 +1,52 @@
-# Content contracts, archetypes và prototype
+# SEO brief, content contract và blueprint linh hoạt
 
-## Contract registry trước, contract chi tiết JIT
+## Khi nào cần tài liệu nào
 
-Sau khi sitemap được duyệt, lập registry tối thiểu toàn site trong sitemap nhưng không mặc định chi tiết hóa mọi launch page cùng lúc. Trước blueprint của scope đang hoạt động, tạo content contract JIT để khóa mục đích, intent, thông điệp, heading, CTA, evidence, entity/schema, media và dynamic source. Không chọn section/widget dựa trên nội dung giả.
+| Page type | SEO brief | Content contract | Blueprint |
+|---|---|---|---|
+| Home, main service, local/commercial, important solution | Bắt buộc | Bắt buộc trước build | Page hoặc archetype |
+| About, Contact | Lightweight; full chỉ khi có SEO goal đáng kể | Tối thiểu facts/CTA/form | Page blueprint nếu layout độc nhất |
+| Privacy/utility | Không cần full SEO brief | Facts/legal guard | Chỉ khi layout đặc biệt |
+| Section/component revision | Kế thừa page constraints | Fragment/delta | Chỉ scope đang sửa |
 
-- Trang độc nhất hoặc chuyển đổi cao: contract riêng.
-- Nhóm trang lặp lại: contract theo archetype; mỗi instance chỉ cung cấp dữ liệu khác nhau.
-- Contract phải được duyệt trước blueprint tương ứng.
-- Guided-wave ưu tiên contract shared/global shell khi có copy, Home, rồi từng page wave. Contract Draft tạo sớm có thể giữ làm planning artifact nhưng không tự mở gate hoặc buộc batch production.
+SEO constraints có trước content contract; content contract có trước heading/section/widget decisions. Không dùng lorem ipsum hoặc text giả để quyết định layout.
 
-## Blueprint theo archetype
+## Contract registry và JIT
 
-Không bắt buộc blueprint đầy đủ cho mọi URL.
+Sitemap giữ registry tối thiểu toàn site. Contract chi tiết được tạo JIT cho requested scope hoặc direct dependency; không bắt buộc soạn mọi launch page cùng lúc.
+
+- Trang độc nhất/chuyển đổi cao: contract riêng.
+- Nhóm lặp: contract theo archetype; instance chỉ cung cấp data delta.
+- Owner-directed revision: đọc contract hiện tại và chỉ bổ sung delta nếu business/SEO constraints không đổi.
+- Claim, giá, review, chứng nhận, pháp lý và evidence không được tự phát minh.
+
+## Blueprint
+
+Blueprint là build plan thiết kế, không phải gate toàn site.
 
 | Trường hợp | Đầu ra |
 |---|---|
-| Trang dịch vụ/sản phẩm/dự án/bài viết có cấu trúc lặp | Một archetype blueprint |
-| Một instance tuân thủ archetype | Không tạo blueprint mới |
-| Instance thêm/bớt/đổi section hoặc CTA/schema | Page override chỉ ghi delta |
-| Trang chủ, liên hệ, báo giá, checkout hoặc trang độc nhất | Page blueprint riêng; có thể `Extends: none` |
+| Trang dịch vụ/dự án có cấu trúc lặp | Archetype blueprint |
+| Instance tuân thủ archetype | Build plan/delta, không cần full blueprint mới |
+| Home/trang độc nhất | Page blueprint |
+| Chỉ sửa Hero/CTA/form/mobile | Section/component delta |
 
-Tạo blueprint riêng khi khác biệt làm thay đổi hierarchy, conversion path, widget, dữ liệu động, schema, responsive behavior hoặc acceptance criteria. Không tạo chỉ vì copy/ảnh khác nhau.
+Mỗi scope map: mục tiêu → content → heading semantics → Container Flex/Grid → widget Elementor/UAE → CTA/data/form → responsive → accessibility → SEO/schema ownership → acceptance.
 
-## Home và representative prototype là cổng bắt buộc
+## Prototype và design review
 
-Sau khi contract, foundation và blueprint đại diện được duyệt:
+Prototype vẫn là accelerator quan trọng nhưng không phải “Home bắt buộc trước mọi thứ”. Trong Guided Flow, Home thường là representative prototype. Trong Owner-Directed, page/section owner yêu cầu có thể là prototype/direction sample.
 
-1. Dựng Home trước như full-page prototype bằng nội dung gần thực tế.
-2. Kiểm tra frontend đăng xuất trên desktop, tablet và mobile.
-3. Xác minh component, form, Posts/Products query, FAQ, header/footer và cache behavior liên quan.
-4. Duyệt prototype và ghi pattern được chấp thuận.
-5. Chỉ sau đó mới sản xuất hàng loạt các instance cùng archetype.
+- Dùng nội dung gần thật và exact target đã xác minh.
+- Kiểm tra frontend đăng xuất ở viewport liên quan.
+- Duyệt bằng `Page Design Approved` hoặc `Design Direction Approved` khi phù hợp.
+- Pattern đã duyệt có thể tái sử dụng; owner có thể sửa/loại bỏ bất kỳ pattern nào.
+- Production hàng loạt chỉ dùng direction/archetype đã đủ bằng chứng; không bắt buộc micro-approval mọi instance.
 
-Nếu archetype hoặc pattern rủi ro chưa được Home bao phủ, prototype một representative trước batch; không mặc định prototype mọi instance.
+## Provisional và Integrated
 
-## Page wave
+Page có thể đạt `Design Complete` khi Header/Footer chưa có, kèm `Global Shell Integration Pending`. Khi shell sẵn sàng, chạy Integrated QA cho header/footer interaction, spacing, anchors, responsive và visual continuity; không rebuild page nếu không có issue.
 
-Mỗi wave chỉ có một active scope và đi qua contract → blueprint → build/QA → approval. Trang độc nhất duyệt riêng; nhóm lặp duyệt representative archetype rồi mới tạo instance. Theo dõi queue và revision trong `docs/page-wave-status.md` để chat mới không suy đoán phạm vi tiếp theo.
+## Page Wave
+
+`docs/page-wave-status.md` chỉ là scheduling aid cho nhiều page. Owner có thể thay queue bằng explicit request. Chỉ cấm hai write xung đột cùng target; không cấm quản lý nhiều state song song.

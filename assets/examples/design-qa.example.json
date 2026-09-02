@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "site_url": "https://example.test/",
+  "navigation_timeout_ms": 30000,
+  "screenshots": false,
+  "viewports": [
+    { "name": "desktop", "width": 1440, "height": 900 },
+    { "name": "tablet", "width": 768, "height": 1024 },
+    { "name": "mobile", "width": 390, "height": 844 }
+  ],
+  "pages": [
+    {
+      "name": "home",
+      "path": "/",
+      "assertions": [
+        { "type": "one-h1" },
+        { "type": "no-horizontal-overflow" },
+        { "type": "selector-visible", "selector": "main" }
+      ]
+    }
+  ]
+}

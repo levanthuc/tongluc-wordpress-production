@@ -1,0 +1,19 @@
+{
+  "name": "tongluc-wordpress-production",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node --check scripts/mcp-client.mjs && node --check scripts/rest-client.mjs && node --check scripts/elementor-build.mjs && node --check scripts/cdp-qa.mjs && node --check scripts/validate-package.mjs",
+    "validate": "npm run check && node scripts/validate-package.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "ws": "8.18.3"
+  }
+}

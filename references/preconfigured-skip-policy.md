@@ -1,13 +1,21 @@
-# Owner-preconfigured baseline và skip policy
+# Baseline inheritance và skip policy
 
-Đọc reference này chỉ khi STATUS ghi `Preconfigured baseline: Current` và Next action đụng live settings, artifact hoặc visual rule đã liệt kê trong `docs/preconfigured-baseline.md`.
+Đọc reference này chỉ khi STATUS/requested scope đụng live setting, artifact hoặc visual rule trong `docs/preconfigured-baseline.md`.
 
-## Ý nghĩa của `Current`
+Trạng thái từng item:
 
-Baseline là lời khẳng định có revision của owner về trạng thái đã cấu hình. Với hạng mục `Keep/Skip`, Codex:
+- `Inherited`: được baseline khai báo, chưa cần query cho scope hiện tại.
+- `Verified`: exact live target/value đã được xác minh đủ cho scope.
+- `Project Override`: project delta thay baseline ở phạm vi ghi rõ.
+- `Drift`: live target/value không khớp contract; dừng affected write.
+- `Not Applicable`: không áp dụng cho profile/scope.
+
+## Ý nghĩa của baseline hợp lệ
+
+Baseline là lời khẳng định có revision/version của owner về trạng thái đã cấu hình. Với hạng mục `Inherited/Verified` hoặc legacy `Keep/Skip`, Codex:
 
 - Không audit lại, không query chỉ để chứng minh, không reapply, upload lại hoặc “chuẩn hóa” giá trị.
-- Không đọc file ảnh, settings, version, API hoặc toàn site nếu Next action không cần dùng chúng.
+- Không đọc file ảnh, settings, version, API hoặc toàn site nếu requested scope/direct dependency không cần dùng chúng.
 - Dùng trực tiếp ID/key/shortcode/path đã khai báo; không tạo object trùng.
 - Chỉ thực hiện các mục trong `Action required` hoặc delta được owner yêu cầu sau đó.
 
@@ -32,11 +40,11 @@ Skip audit không đồng nghĩa ghi mù:
 
 - Không chạy audit Markdown/table/link/shell ngoài phạm vi chỉ để “chắc chắn” trong tác vụ website thường lệ; chỉ chạy khi file liên quan vừa sửa, có lỗi hiển thị hoặc QA/package yêu cầu.
 - Không đọc catalog/reference dài khi baseline, blueprint và candidate widget đã chỉ rõ quyết định.
-- Mỗi turn dùng reference allowlist từ Router/Next action; không đọc toàn bộ `references/` hoặc reference của phase khác để lấy thêm bối cảnh.
+- Mỗi turn dùng reference allowlist từ Router/requested scope; không đọc toàn bộ `references/` hoặc reference của phase khác để lấy thêm bối cảnh.
 - Báo ngắn phần baseline đã tái sử dụng và chỉ mô tả delta/test thực hiện.
 
 ## Missing dependency
 
 - Path trong baseline/STATUS là exact input. Nếu không tồn tại, ghi path và affected task; không `find`, `rg --files` hoặc quét thư mục để đoán file thay thế.
-- Có thể tiếp tục một task khác chỉ khi task đó độc lập, đã nằm trong Next action/queue và không vượt gate hiện tại.
+- Có thể tiếp tục task khác khi nó độc lập, nằm trong requested scope hoặc explicit owner queue và không cần quyền mới.
 - Nếu không có task độc lập được phép, cập nhật blocker rồi dừng. Owner cung cấp/sửa path hoặc đổi scope mới được tiếp tục affected task.

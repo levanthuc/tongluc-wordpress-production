@@ -1,11 +1,25 @@
 # QA và bàn giao
 
+## Hai lớp QA
+
+- `Design QA`: chạy ngay sau page/section/component write; kiểm hierarchy, responsive, overflow, heading, CTA, form state, accessibility cơ bản và consistency trong requested scope.
+- `Integrated QA`: chạy khi dependency toàn cục liên quan đã có; kiểm page cùng Header/Footer/Menu, anchors, fixed/sticky elements, cross-page links và visual continuity.
+- `Production QA`: chỉ trong Production Mode; bổ sung Rank Math/indexing/schema chi tiết, performance/cache, production mail/integration và launch checks theo scope.
+
+Viewport mặc định khi plan không quy định khác: `1440×900`, `768×1024`, `390×844`. Có thể thêm viewport theo đối tượng/issue. QA plan là dữ liệu project, không hardcode trong script.
+
+Design QA tối thiểu: không overflow/layout vỡ; text readable; CTA usable; crop ảnh hợp lý; card alignment chấp nhận được; form render; responsive hierarchy; Header/Footer usable nếu hiện diện.
+
+SEO-critical page: đúng một visible meaningful H1; primary topic rõ; H2/H3 logic; required topic sections, internal links và primary CTA hiện diện; không nhúng text SEO quan trọng chỉ trong ảnh; không lộ shortcode. Không dùng Rank Math score làm gate Design Mode.
+
+Với Corporate Master contact form: UAE Contact Form 7 Styler phải hiện diện, chọn đúng CF7 `843524c`, form render desktop/mobile, validation UI không vỡ và button theo project design. Production email delivery chưa phải Design QA.
+
 ## 1. Scope và content
 
 - [ ] Sitemap/menu đúng bản duyệt.
 - [ ] Content contract, archetype blueprint, full unique-page blueprint và page delta đúng bản duyệt.
 - [ ] Build manifest khớp live artifacts; không còn `Conflict` chưa có owner/decision.
-- [ ] Prototype/pattern đã duyệt trước production hàng loạt.
+- [ ] Design direction/archetype đủ bằng chứng trước production hàng loạt; không ép Home làm prototype nếu owner đã chọn representative scope khác.
 - [ ] Không còn lorem ipsum, placeholder, link `#` ngoài ý muốn.
 - [ ] Tên công ty, địa chỉ, hotline, email, pháp lý nhất quán.
 - [ ] Giá, cam kết, chính sách đã được duyệt.
@@ -23,7 +37,7 @@
 
 ## 3. Astra/Site Builder
 
-- [ ] Global palette, typography, container, button đã lưu.
+- [ ] Baseline inheritance và project override đã ghi; không reapply global master chỉ để QA.
 - [ ] Header desktop/tablet/mobile.
 - [ ] Một footer chính, không trùng.
 - [ ] Hook placement, priority và display conditions đúng.
@@ -123,3 +137,5 @@ Known limitations:
 Credentials/actions owner must complete:
 Rollback/recovery note:
 ```
+
+Với revision scope hẹp, báo cáo chỉ liệt kê scope đã kiểm và dependency trực tiếp. Không biến mobile-only fix thành full-site audit.

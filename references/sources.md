@@ -1,8 +1,10 @@
 # Nguồn chính thức và chính sách cập nhật
 
-Cập nhật lần cuối: 2026-08-28.
+Cập nhật lần cuối: 2026-09-02.
 
 Tài liệu này là bản tóm lược vận hành, không sao chép toàn bộ tài liệu nhà cung cấp. Khi có xung đột, ưu tiên phiên bản đang cài trên website, sau đó đối chiếu nguồn chính thức.
+
+Kiến trúc workflow v2 tuân theo đặc tả nội bộ `TECHNICAL-SPEC-DESIGN-FIRST-FLEXIBLE-MASTER.md`; fixed Corporate Master contract được version hóa riêng trong `assets/baselines/corporate-master.json` và không suy rộng sang non-master/WooCommerce.
 
 ## WordPress và MCP
 

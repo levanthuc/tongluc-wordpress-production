@@ -1,14 +1,14 @@
-# Prototype Approval
+# Design Review / Prototype Evidence
 
 > Trạng thái: Draft · Revision: YYYY-MM-DD-r1 · Chủ sở hữu: Chưa xác định · Cập nhật nội dung: YYYY-MM-DD HH:MM TZ · Người duyệt/ngày: Chưa
 
-## Phạm vi đại diện
+## Phạm vi đại diện hoặc requested scope
 
 - URL/template Prototype:
 - Archetype/page blueprint và revision:
 - Content contract và revision:
 - Design foundation revision:
-- Global Shell approval revision:
+- Global Shell state/revision hoặc `Integration Pending`:
 - Pattern/risk được Prototype bao phủ:
 - Pattern chưa được bao phủ:
 
@@ -35,6 +35,7 @@
 
 - Kết luận/feedback:
 - Điều kiện hoặc issue được chấp nhận:
-- Phạm vi được phép production hàng loạt:
+- Approval gate: Page Design Approved / Design Direction Approved / Site Design Approved / Chưa duyệt
+- Pattern/archetype được phép tái sử dụng:
 
-Không sửa blueprint chỉ để ghi bằng chứng runtime. Khi blueprint, content contract hoặc design foundation revision đổi theo cách ảnh hưởng output, đặt trạng thái `Revalidation required` trước mọi production tiếp theo.
+Không sửa blueprint chỉ để ghi bằng chứng runtime. Khi dependency đổi, chỉ revalidate scope bị ảnh hưởng. Home là prototype mặc định của Guided Flow, không phải điều kiện bắt buộc trước Footer/Header/page owner chỉ định.
